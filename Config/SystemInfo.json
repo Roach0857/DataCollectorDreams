@@ -1,0 +1,48 @@
+{
+    "awsInfo": {
+        "shadowName": "state",
+        "endpoint": "a3s0shx085zc58-ats.iot.us-west-2.amazonaws.com",
+        "certificatePath": "/greengrass/v2/thingCert.crt",
+        "privateKeyPath": "/greengrass/v2/privKey.key"
+    },
+    "nodeInfo": {
+        "operateModel": "debug",
+        "box": {
+            "type": "single",
+            "id": 1
+        },
+        "node": {
+            "type": "master",
+            "id": 5
+        }
+    },
+    "objectInfo": {
+        "locationObjectID": "T0000",
+        "device": [
+            {
+                "type":"inv",
+                "modelID": 4,
+                "address": 1,
+                "flag": 1,
+                "deviceID": 6,
+                "comPort": "/dev/ttyUSB0"
+            },
+            {
+                "type":"dm",
+                "modelID": 3,
+                "address": 15,
+                "flag": 1,
+                "deviceID": 5,
+                "comPort": "/dev/ttyUSB0"
+            },
+            {
+                "type":"temp",
+                "modelID": 2,
+                "address": 17,
+                "flag": 1,
+                "deviceID": 3,
+                "comPort": "/dev/ttyUSB0"
+            }
+        ]
+    }
+}
