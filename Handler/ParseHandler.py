@@ -1,17 +1,18 @@
 from logging import Logger
-from Entity.DeviceConfig import DataConfig, Parse
+from Entity.DeviceConfig import DeviceConfig, Parse
 from Entity.ObjectInfo import DeviceInfo
 import struct
-
 import Entity
+import Handler
 
-class ParseHandler():
-    def __init__(self, deviceInfo: DeviceInfo, dataConfig: DataConfig, logger: Logger):
-        self.deviceInfo = deviceInfo
-        self.dataConfig = dataConfig
-        self.logger = logger
-        self.parseCode = self.__GetParseCode()
-        self.parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse}
+class ParseHandler(Handler.CalculateHandler):
+    def __init__(self, deviceInfo: DeviceInfo, deviceConfig:DeviceConfig, logger: Logger):
+        super().__init__(deviceInfo, logger)
+        self.__deviceInfo = deviceInfo
+        self.__logger = logger
+        self.dataConfig = deviceConfig.data[deviceInfo.type][deviceInfo.modelName]
+        self.__parseCode = self.__GetParseCode()
+        self.__parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse}
         self.__dWordFlag = True
         
     def ParseModbus(self, modbusResult:list) -> Entity.ParseData:
@@ -21,9 +22,9 @@ class ParseHandler():
             for parseConfig in self.dataConfig.parse:
                 if modbusResult[parseConfig.startSite] != None:
                     if 'err' in parseConfig.field:
-                        err[parseConfig.field] = self.parseFunstion[self.parseCode](modbusResult, parseConfig)
+                        err[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
                     else:
-                        data[parseConfig.field] = self.parseFunstion[self.parseCode](modbusResult, parseConfig)
+                        data[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
         if len(data) == 0:
             return Entity.ParseData(False, data, err)
         else:
@@ -44,7 +45,7 @@ class ParseHandler():
                 value = lowWord
         else:
             value = modbusResult[parseConfig.startSite]
-        if parseConfig.field[:3] == "err" or parseConfig.field == "status":
+        if parseConfig.field[:3] == "err":
             return self.__ParseDeviceCode(value)
         else:
             return self.__ParseDeviceValue(value, parseConfig.rate)
@@ -107,19 +108,20 @@ class ParseHandler():
         return binString, True
     
     def __GetParseCode(self) -> str:
-        if self.deviceInfo.modelID == 7:
+        if self.__deviceInfo.modelName == 'delta':
             self.__dWordFlag = False
             return "basic"
-        elif self.deviceInfo.modelID in (4, 8, 9, 11, 12, 13, 16, 17):
-            return "basic"
-        elif self.deviceInfo.modelID in (10, 15):
+        elif self.__deviceInfo.modelName in ('fronius', 'solaredge'):
             return "sunspec"
-        elif self.deviceInfo.modelID in (3, 14):
+        elif self.__deviceInfo.modelName in ('spm-3', 'spm-8'):
             return "dm"
-        elif self.deviceInfo.modelID in (1, 5):
+        elif self.__deviceInfo.modelName in ('ctec-03', 'SP-422'):
             return "irr"  
-        elif self.deviceInfo.modelID in (2, 6, 18):
-            return "temp"  
+        elif self.__deviceInfo.modelName in ('ctec-04', 'JXBS-3001-TH', 'SD200'):
+            return "temp"
+        else:
+            return "basic"
+        
         
     def __ParseDeviceCode(self, value) -> str:
         if type(value) is str:

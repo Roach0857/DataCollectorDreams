@@ -1,2 +1,2 @@
 from .MutualFactory import MutualFactory
-from .ModbusFactory import ModbusFactory
+from .ModbusClientFactory import ModbusClientFactory

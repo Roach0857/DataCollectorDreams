@@ -1,11 +1,11 @@
 from logging import Logger
-import Abstract
+import Interface
 import Entity
 from Entity import AwsInfo
 import Handler
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 
-def MutualFactory(awsInfo:AwsInfo, nodeInfo:Entity.NodeInfo, GPIOInfo:Entity.GPIOInfo, ipcClient:GreengrassCoreIPCClient, logger:Logger) -> Abstract.MutualAbstract:
+def MutualFactory(awsInfo:AwsInfo, nodeInfo:Entity.NodeInfo, GPIOInfo:Entity.GPIOInfo, ipcClient:GreengrassCoreIPCClient, logger:Logger) -> Interface.IMutual:
     factory = {
         "dual":{
             "master":Handler.MasterHandler, 

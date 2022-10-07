@@ -21,7 +21,7 @@
         "device": [
             {
                 "type":"inv",
-                "modelID": 4,
+                "modelName": "prime",
                 "address": 1,
                 "flag": 1,
                 "deviceID": 6,
@@ -29,7 +29,7 @@
             },
             {
                 "type":"dm",
-                "modelID": 3,
+                "modelName": "spm-3",
                 "address": 15,
                 "flag": 1,
                 "deviceID": 5,
@@ -37,7 +37,7 @@
             },
             {
                 "type":"temp",
-                "modelID": 2,
+                "modelName": "ctec-04",
                 "address": 17,
                 "flag": 1,
                 "deviceID": 3,

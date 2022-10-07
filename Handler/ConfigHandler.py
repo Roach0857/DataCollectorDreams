@@ -47,20 +47,20 @@ class ConfigHandler():
         return result
     
     def GetParameter(self, thingName:str):
-        result = None
         session = boto3.Session()
         credentials = session.get_credentials()
         try:
             if self.__Check():
+                result = None
                 ssm_client = boto3.client('ssm', 
                                         region_name=session.region_name,
                                         aws_access_key_id=credentials.access_key,
                                         aws_secret_access_key=credentials.secret_key)
                 parameterResult = ssm_client.get_parameter(Name=thingName)
                 result = json.loads(parameterResult["Parameter"]["Value"])
-            if result != None:
-                with open("Config/SystemInfo.json", "w") as file:
-                    file.write(json.dumps(result, indent=4))
+                if result != None:
+                    with open("Config/SystemInfo.json", "w") as file:
+                        file.write(json.dumps(result, indent=4))
         except ClientError as ex:
             raise ex
         except Exception as ex:

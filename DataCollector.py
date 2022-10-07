@@ -44,33 +44,32 @@ class Operation():
         self.__CheckFolder(self.operateInfo.dataFolderPath.lostData)
         self.__CheckFolder(self.operateInfo.dataFolderPath.rawData)
         self.ipcClient = awsiot.greengrasscoreipc.connect(timeout=60.0)
+        self.awsMqtt = Handler.AwsMqttHandler(sys.argv[1], self.awsInfo, self.nodeInfo, logger)
+        self.awsMqtt.Connect(sys.argv[1])
+        self.mutual = Factory.MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
+        self.send = Handler.SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.logger)
+        self.sendJob = th.Thread(target=self.send.Process)
+        self.sendJob.start()
         self.logger.info("Initialize Finish")
         
     def Process(self):
-        awsLwt = Handler.AwsLwtHandler(self.awsInfo, self.nodeInfo, logger)
-        awsLwt.Connect(sys.argv[1])
-        mutual = Factory.MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
-        send = Handler.SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.logger)
-        sendJob = th.Thread(target=send.Process)
-        sendJob.start()
+        readHandlerList:list[Handler.ReadHandler]
         readHandlerList = []
         self.objectInfo.device = sorted(self.objectInfo.device, key=lambda x:x.comPort)
         for comPort, deviceInfoList in groupby(self.objectInfo.device, key=lambda x:x.comPort):
             self.logger.info(f"Build Read Handler for {comPort}")
             read = None
-            read = Handler.ReadHandler(self.awsInfo, self.nodeInfo, self.objectInfo, self.operateInfo, list(deviceInfoList), self.deviceConfig, self.ipcClient, self.logger)
+            read = Handler.ReadHandler(self.objectInfo.locationObjectID, list(deviceInfoList), self.deviceConfig, self.awsInfo, self.nodeInfo, self.operateInfo, self.ipcClient, self.logger)
             readHandlerList.append(read)
             readJob = th.Thread(target=read.Process)
             readJob.start()
-        count = 0
+            
         while(True):
-            self.logger.info(f"{count}")
-            count += 1
-            systemFlag = mutual.Process()
+            systemFlag = self.mutual.Process()
             for readHandler in readHandlerList:
                 readHandler.systemFlag = systemFlag
             self.logger.info("System Flag:{0}".format(systemFlag))
-            time.sleep(1)
+            time.sleep(60)
             
     def __CheckFolder(self, path:str):
         if not os.path.isdir(path):

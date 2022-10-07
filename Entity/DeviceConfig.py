@@ -12,11 +12,11 @@ class Read:
     startBit: int
     length: int
 
-
 class DataConfig:
-    def __init__(self, read:list[dict], parse:list[dict]):
+    def __init__(self, read:list[dict], parse:list[dict], write:dict):
         self.read = [Read(**r) for r in read]
         self.parse = [Parse(**p) for p in parse]
+        self.write = {wK:Read(**wV) for wK, wV in write.items()}
 
 @dataclass
 class ObjectConfig:

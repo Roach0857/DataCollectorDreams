@@ -3,7 +3,7 @@ from dataclasses import dataclass
 @dataclass
 class DeviceInfo:
     type:str
-    modelID:int
+    modelName:str
     address:int
     flag:int
     deviceID:int

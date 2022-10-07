@@ -5,10 +5,10 @@ import Handler
 
 class CalculateHandler():
     def __init__(self, deviceInfo:DeviceInfo, logger:Logger):
-        self.deviceInfo = deviceInfo
-        self.logger = logger
-        self.calculateCode = self.__GetCalculateCode()
-        self.calculateFunction = {"basic":self.__BasicCalculate, 
+        self.__deviceInfo = deviceInfo
+        self.__logger = logger
+        self.__calculateCode = self.__GetCalculateCode()
+        self.__calculateFunction = {"basic":self.__BasicCalculate, 
                                   "getAcActivePower":self.__GetAcActivePower, 
                                   "getAcActiveDailyEnergy":self.__GetAcActiveDailyEnergy, 
                                   "getAcActiveEnergy":self.__GetAcActiveEnergy}
@@ -16,7 +16,7 @@ class CalculateHandler():
         self.__scaleFalg = True
         
     def CalculateData(self, parseResult:dict) -> dict:
-        return self.calculateFunction[self.calculateCode](parseResult)
+        return self.__calculateFunction[self.__calculateCode](parseResult)
     
     def __BasicCalculate(self, parseResult:dict) -> dict:
         return parseResult
@@ -41,7 +41,7 @@ class CalculateHandler():
                 result[field] = value
         shelveData = self.__shelveHandler.Read()
         if shelveData != None:
-            self.logger.debug(f"{self.deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['acActiveEnergyDaily']}")
+            self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['acActiveEnergyDaily']}")
             localDataTime = datetime.datetime.strptime(shelveData['dt'], '%Y/%m/%d %H:%M:%S').date()
             if result['acActiveEnergy'] == 0.0:
                 result['acActiveEnergy'] = shelveData['acActiveEnergy']
@@ -50,9 +50,9 @@ class CalculateHandler():
             else:
                 result['acActiveEnergyDaily'] = shelveData['dailyEnergy'] + ( result['acActiveEnergy'] - shelveData['acActiveEnergy'])
         else:
-            self.logger.debug(f"{self.deviceInfo.deviceID}_shelveData is null")
+            self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData is null")
             result['acActiveEnergyDaily'] = 0.0
-        self.logger.debug(f"{self.deviceInfo.deviceID}_resultData | acActiveEnergy:{result['acActiveEnergy']}, acActiveEnergyDaily:{result['acActiveEnergyDaily']}")
+        self.__logger.debug(f"{self.__deviceInfo.deviceID}_resultData | acActiveEnergy:{result['acActiveEnergy']}, acActiveEnergyDaily:{result['acActiveEnergyDaily']}")
         writeData = {}
         writeData["acActiveEnergyDaily"] = result["acActiveEnergyDaily"]
         writeData["acActiveEnergy"] = result["acActiveEnergy"]
@@ -65,7 +65,7 @@ class CalculateHandler():
             result[field] = value
         shelveData = self.__shelveHandler.Read()
         if shelveData != None:
-            self.logger.debug(f"{self.deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['acActiveEnergyDaily']}")
+            self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['acActiveEnergyDaily']}")
             if shelveData['dailyEnergy'] <= parseResult['acActiveEnergyDaily']:
                 energyDeviation = parseResult['acActiveEnergyDaily'] - shelveData['acActiveEnergyDaily']
                 shelveData['totalEnergy'] += energyDeviation
@@ -73,9 +73,9 @@ class CalculateHandler():
                 shelveData['totalEnergy'] += parseResult['acActiveEnergyDaily']
             result['acActiveEnergy'] = shelveData['totalEnergy']
         else:
-            self.logger.debug(f"{self.deviceInfo.deviceID}_shelveData is null")
+            self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData is null")
             result['acActiveEnergy'] = parseResult['acActiveEnergyDaily']
-        self.logger.debug(f"{self.deviceInfo.deviceID}_resultData | acActiveEnergy:{result['acActiveEnergy']}, acActiveEnergyDaily:{result['acActiveEnergyDaily']}")
+        self.__logger.debug(f"{self.__deviceInfo.deviceID}_resultData | acActiveEnergy:{result['acActiveEnergy']}, acActiveEnergyDaily:{result['acActiveEnergyDaily']}")
         writeData = {}
         writeData["acActiveEnergyDaily"] = result["acActiveEnergyDaily"]
         writeData["acActiveEnergy"] = result["acActiveEnergy"]
@@ -99,14 +99,14 @@ class CalculateHandler():
                     result[vField] = vValue
         
     def __GetCalculateCode(self):
-        if self.deviceInfo.modelID in (4, 17):
+        if self.__deviceInfo.modelName in ('prime', 'cyberpower'):
             return "getAcActivePower"
-        elif self.deviceInfo.modelID  == 10:
+        elif self.__deviceInfo.modelName  == 'fronius':
             return "getAcActiveDailyEnergy"
-        elif self.deviceInfo.modelID  == 15:
+        elif self.__deviceInfo.modelName  == 'solaredge':
             self.__scaleFalg = False
             return "getAcActiveDailyEnergy"
-        elif self.deviceInfo.modelID in (8, 9, 12):
+        elif self.__deviceInfo.modelName in ('kaco_1', 'kaco_2', 'kaco_3'):
             return "getAcActiveEnergy"
         else:
             return "basic"
