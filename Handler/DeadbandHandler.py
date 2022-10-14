@@ -26,23 +26,23 @@ class DeadbandHandler():
     def Set(self, messageDeadbandSet:dict):
         self.deadbandSet = Entity.DeadbandSet(**messageDeadbandSet)
         with open("Config/DeadbandSetting.json", "w") as file:
-            file.write(json.dumps(messageDeadbandSet, indent=4))
+            file.write(json.dumps(messageDeadbandSet, default=DataCalssJsonEncoder, indent=4))
         
     def Check(self, data: dict):
         flag = False
         # need more judge
         if data["type"] == "dm":
-            for dataField, dataValue in data.items():
-                if self.__CheckDeadBand(dataField, dataValue):
-                    self.__logger.debug(f"Deadband trigger -> deviceID:{data['deviceID']}, Field:{dataField}, Value:{dataValue}")
-                    flag = True
+            for field, value in data.items():
+                if field in self.aiData.__dict__:
+                    if self.__CheckDeadBand(field, value):
+                        flag = True
         return flag
     
-    def __CheckDeadBand(self, dataField:str, dataValue:float) -> bool:
+    def __CheckDeadBand(self, dataField:str, dataValue:float):
         flag = False
-        if self.aiData[dataField] != None:
-            if abs(self.aiData[dataField] - dataValue) > self.deadbandSet[dataField]:
+        if self.aiData.__dict__[dataField] != None:
+            if abs(self.aiData.__dict__[dataField] - dataValue) > self.deadbandSet.__dict__[dataField]:
+                self.__logger.debug(f"Deadband trigger -> Field:{dataField}, Value:{dataValue}")
                 flag = True
-        self.aiData[dataField] = dataValue
+        self.aiData.__dict__[dataField] = dataValue
         return flag
-    

@@ -2,6 +2,7 @@ import datetime
 import json
 import sys
 import time
+from asyncio import Future
 from logging import Logger
 
 from awscrt import io, mqtt
@@ -41,16 +42,15 @@ class AwsMqttHandler(Handler.DreamsHandler):
         self.__logger.error(f"Connection interrupted. error: {error}")
 
     def __on_connection_resumed(self, connection, return_code, session_present, **kwargs):
-        self.__logger.info(
-            f"Connection resumed. return_code: {return_code} session_present: {session_present}")
+        self.__logger.info(f"Connection resumed. return_code: {return_code} session_present: {session_present}")
         if return_code == mqtt.ConnectReturnCode.ACCEPTED and not session_present:
-            self.__logger.error(
-                "Session did not persist. Resubscribing to existing topics...")
-            resubscribe_future, _ = self.__connection.resubscribe_existing_topics()
-            resubscribe_future.add_done_callback(
-                self.__on_resubscribe_complete)
+            self.__logger.error("Session did not persist. Resubscribing to existing topics...")
+            resubscribe_future, packet_id = self.__connection.resubscribe_existing_topics()
+            # Cannot synchronously wait for resubscribe result because we're on the connection's event-loop thread,
+            # evaluate result with a callback instead.
+            resubscribe_future.add_done_callback(self.__on_resubscribe_complete)
 
-    def __on_resubscribe_complete(self, resubscribe_future):
+    def __on_resubscribe_complete(self, resubscribe_future:Future):
         resubscribe_results = resubscribe_future.result()
         self.__logger.info(f"Resubscribe results: {resubscribe_results}")
         for topic, qos in resubscribe_results['topics']:
@@ -74,7 +74,7 @@ class AwsMqttHandler(Handler.DreamsHandler):
             "ai":self.__deadband.aiData.__dict__,
             "timeStamp": int(time.mktime(datetime.datetime.now().timetuple()))
         }
-        result["ai"]["invSet"] = self.invSet.__dict__
+        result["ai"]["invSet"] = self.invSet[invNumber].__dict__
         result["ai"]["invSet"]["control1"] = "".join(self.control1)
         result["ai"]["invSet"]["control2"] = "".join(self.control2)
         result["ai"]["deadbandSet"] = self.__deadband.deadbandSet.__dict__
@@ -96,8 +96,7 @@ class AwsMqttHandler(Handler.DreamsHandler):
                 "state": False,
                 "clientDevice": {},
                 "thingName": thingName}}}
-        lwt = mqtt.Will(topic=f"lwt/{thingName}/update", qos=0,
-                        payload=bytes(json.dumps(reported), 'utf-8'), retain=False)
+        lwt = mqtt.Will(topic=f"lwt/{thingName}/update", qos=0,payload=bytes(json.dumps(reported), 'utf-8'), retain=False)
         self.__connection.will = lwt
         connect_future = self.__connection.connect()
         connect_future.result()
@@ -106,16 +105,12 @@ class AwsMqttHandler(Handler.DreamsHandler):
 
     def Subscribe(self):
         topic = f"rfdme/dreams/{self.__thingName}/ao"
-        subscribeFuture, packet_id = self.__connection.subscribe(
-            topic=topic, qos=mqtt.QoS.AT_MOST_ONCE, callback=self.__on_message_received)
+        subscribeFuture, packet_id = self.__connection.subscribe(topic=topic, qos=mqtt.QoS.AT_MOST_ONCE, callback=self.__on_message_received)
         subscribeResult = subscribeFuture.result()
-        self.__logger.info(
-            f"Subscribed {topic} with {str(subscribeResult['qos'])}, packetID:{packet_id}")
+        self.__logger.info(f"Subscribed {topic} with {str(subscribeResult['qos'])}, packetID:{packet_id}")
 
-    def Publish(self, payloadYype: str, payload: str):
-        topic = f"rfdme/dreams/{self.__thingName}/{payloadYype}"
-        publishFuture, packet_id = self.__connection.publish(
-            topic=topic, qos=mqtt.QoS.AT_MOST_ONCE, payload=payload)
+    def Publish(self, payloadType: str, payload: str):
+        topic = f"rfdme/dreams/{self.__thingName}/{payloadType}"
+        publishFuture, packet_id = self.__connection.publish(topic=topic, qos=mqtt.QoS.AT_MOST_ONCE, payload=payload)
         publishResult = publishFuture.result()
-        self.__logger.info(
-            f"Published {topic} with {str(publishResult['qos'])}, packetID:{packet_id}, payload:{payload}")
+        self.__logger.info(f"Published {topic} with {str(publishResult['qos'])}, packetID:{packet_id}, payload:{payload}")
