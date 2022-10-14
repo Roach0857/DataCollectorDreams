@@ -1,8 +1,10 @@
 from logging import Logger
-import Interface
-import Handler
+
 import Entity
+import Handler
+import Interface
 from Entity.ObjectInfo import DeviceInfo
+
 
 class PrimeHandler(Handler.RTUHandler, Interface.IWrite):
     def __init__(self, deviceInfo: DeviceInfo, deviceConfig: Entity.DeviceConfig, logger: Logger):

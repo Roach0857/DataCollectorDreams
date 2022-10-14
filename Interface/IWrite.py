@@ -1,5 +1,6 @@
 import abc
 
+
 class IWrite():
     @abc.abstractmethod
     def WritePowerFactor(self, value:int) -> bool:

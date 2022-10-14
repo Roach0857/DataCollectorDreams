@@ -1,10 +1,13 @@
-from logging import Logger
 import sys
+from logging import Logger
+
+from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+
 import Entity
-from Entity.AwsInfo import AwsInfo
 import Handler
 import Interface
-from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+from Entity.AwsInfo import AwsInfo
+
 
 class SlaveHandler(Interface.IMutual, Handler.AwsShadowHandler):
     """

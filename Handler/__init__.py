@@ -15,3 +15,5 @@ from .MutualHandler.SlaveHandler import SlaveHandler
 from .KinesisHandler import KinesisHandler
 from .SendHandler import SendHandler
 from .WriteHandler.PrimeHandler import PrimeHandler
+from .DeadbandHandler import DeadbandHandler
+from .DreamsHandler import DreamsHandler

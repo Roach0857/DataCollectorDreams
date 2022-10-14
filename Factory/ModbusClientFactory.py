@@ -1,7 +1,9 @@
 from logging import Logger
-from Entity.ObjectInfo import DeviceInfo
-import Interface
+
 import Handler
+import Interface
+from Entity.ObjectInfo import DeviceInfo
+
 
 def ModbusClientFactory(deviceInfo:DeviceInfo, logger:Logger) -> Interface.IModbusClient:
     factory = {"rtu":Handler.RTUHandler, "serial":Handler.SerialHandler}

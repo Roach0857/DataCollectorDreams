@@ -1,18 +1,23 @@
 import datetime
-from logging import Logger
 import time
+from logging import Logger
+
+from apscheduler.schedulers.background import BackgroundScheduler
+from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+
 import Entity
-from Entity.DeviceConfig import ObjectConfig
-from Entity.ObjectInfo import DeviceInfo
 import Factory
 import Handler
-from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
-from apscheduler.schedulers.background import BackgroundScheduler
+from Entity.DeviceConfig import ObjectConfig
+from Entity.ObjectInfo import DeviceInfo
+
 
 class ReadHandler(Handler.DataHandler):
-    def __init__(self, locationObjectID:str, deviceInfoList: list[DeviceInfo], deviceConfig: Entity.DeviceConfig, 
+    def __init__(self, awsMqtt:Handler.AwsMqttHandler, deadband:Handler.DeadbandHandler, locationObjectID:str, deviceInfoList: list[DeviceInfo], deviceConfig: Entity.DeviceConfig, 
                  awsInfo:Entity.AwsInfo, nodeInfo:Entity.NodeInfo, operateInfo:Entity.OperateInfo, ipcClient:GreengrassCoreIPCClient, logger: Logger):
         super().__init__(awsInfo, nodeInfo, operateInfo, ipcClient, logger)
+        self.__awsMqtt = awsMqtt
+        self.__deadband = deadband
         self.__locationObjectID = locationObjectID
         self.__deviceInfoList = deviceInfoList
         self.__deviceConfig = deviceConfig
@@ -54,6 +59,9 @@ class ReadHandler(Handler.DataHandler):
         parseResult.err["deviceID"] = deviceInfo.deviceID
         parseResult.err["type"] = deviceInfo.type
         parseResult.err["objectID"] = self.__GetObjectID(deviceInfo.flag)
+        if self.__deadband.Check(parseResult.data):
+            aiData = self.__awsMqtt.GetAIData(parseResult.data['flag'])
+            self.__awsMqtt.Publish("ai", aiData)
         return parseResult
     
     def __GetObjectID(self, flag:int):

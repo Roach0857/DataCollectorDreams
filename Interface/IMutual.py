@@ -1,6 +1,7 @@
 import abc
 import os
 
+
 class IMutual(abc.ABC):
     @abc.abstractmethod
     def Process(self) -> bool:

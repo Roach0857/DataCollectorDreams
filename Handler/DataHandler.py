@@ -1,9 +1,12 @@
 import json
-from logging import Logger
 from datetime import datetime
+from logging import Logger
+
+from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+
 import Entity
 import Handler
-from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+
 
 class DataHandler(Handler.AwsShadowHandler):
     def __init__(self, awsInfo: Entity.AwsInfo, nodeInfo: Entity.NodeInfo,  operateInfo:Entity.OperateInfo, ipcClient:GreengrassCoreIPCClient, logger: Logger):

@@ -1,7 +1,9 @@
 import datetime
 from logging import Logger
-from Entity.ObjectInfo import DeviceInfo
+
 import Handler
+from Entity.ObjectInfo import DeviceInfo
+
 
 class CalculateHandler():
     def __init__(self, deviceInfo:DeviceInfo, logger:Logger):

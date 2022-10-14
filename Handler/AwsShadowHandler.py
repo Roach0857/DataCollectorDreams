@@ -1,9 +1,12 @@
-import sys
 import json
+import sys
 from logging import Logger
-from awsiot.greengrasscoreipc.model import UpdateThingShadowRequest
+
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+from awsiot.greengrasscoreipc.model import UpdateThingShadowRequest
+
 import Entity
+
 
 class AwsShadowHandler():
     def __init__(self, awsInfo:Entity.AwsInfo, nodeInfo: Entity.NodeInfo, ipcClient:GreengrassCoreIPCClient, logger:Logger):

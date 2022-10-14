@@ -1,8 +1,10 @@
-import serial
 from logging import Logger
+
+import serial
+from pymodbus.client.sync import ModbusSerialClient as pyRtu
+
 import Interface
 from Entity.ObjectInfo import DeviceInfo
-from pymodbus.client.sync import ModbusSerialClient as pyRtu
 
 
 class RTUHandler(Interface.IModbusClient):

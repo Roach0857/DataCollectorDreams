@@ -1,8 +1,11 @@
-import serial
 from logging import Logger
+
+import serial
+
+import Handler
 import Interface
 from Entity.ObjectInfo import DeviceInfo
-import Handler
+
 
 class SerialHandler(Interface.IModbusClient, Handler.KacoHandler):
     def __init__(self, deviceInfo: DeviceInfo, logger: Logger):

@@ -1,11 +1,13 @@
 
+import json
 import os
 import time
-import json
-from pathlib import Path
 from logging import Logger
-from Entity.OperateInfo import OperateInfo
+from pathlib import Path
+
 import Handler
+from Entity.OperateInfo import OperateInfo
+
 
 class SendHandler(Handler.KinesisHandler):
     def __init__(self, operateModel:str, operateInfo:OperateInfo, logger:Logger):
@@ -20,13 +22,13 @@ class SendHandler(Handler.KinesisHandler):
             sendDataList = self.__GetData()
             for sendData in sendDataList:
                 self.__logger.info("DoSend Work")
-                sendFlag = self.__DoSend(sendData[0])
+                sendFlag = self.DoSend(sendData[0])
                 if sendFlag:
                     self.__DeleteData(sendData[1])
                 time.sleep(1)
             time.sleep(5)
             
-    def __DoSend(self, data:dict) -> bool:
+    def DoSend(self, data:dict) -> bool:
         try:
             self.__logger.info(f"Send Data: {data}")
             stream = self.describe(self.__modelInfo.streamName)

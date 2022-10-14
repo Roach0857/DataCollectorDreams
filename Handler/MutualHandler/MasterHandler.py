@@ -1,7 +1,10 @@
 from logging import Logger
-import Interface
-import Entity
+
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+
+import Entity
+import Interface
+
 
 class MasterHandler(Interface.IMutual):
     """

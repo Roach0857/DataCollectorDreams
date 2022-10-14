@@ -1,8 +1,11 @@
-import logging
 import json
+import logging
+
 import boto3
 from botocore.exceptions import ClientError
+
 from Entity.OperateInfo import ModelInfo
+
 
 class KinesisHandler:
     def __init__(self, modelInfo:ModelInfo, logger:logging.Logger):

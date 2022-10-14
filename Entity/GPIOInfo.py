@@ -1,4 +1,5 @@
 import sys
+
 systemType = sys.argv[1].split("-")[1]
 if systemType != "raspberry":
     import DebugGPIO as GPIO 

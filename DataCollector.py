@@ -1,18 +1,25 @@
-import os,sys,re
+import os
+import re
+import sys
 import time
+
 systemType = sys.argv[1].split("-")[1]
 if systemType != "raspberry":
     import DebugGPIO as GPIO 
 else:
     import RPi.GPIO as GPIO 
+
 import logging
-from logging import Logger,handlers
-import Handler
-import Entity
-import Factory
-import awsiot.greengrasscoreipc
 import threading as th
 from itertools import groupby
+from logging import Logger, handlers
+
+import awsiot.greengrasscoreipc
+
+import Entity
+import Factory
+import Handler
+
 
 def GetLogger(logInfo:Entity.LogInfo) -> Logger:
     logger = logging.getLogger("DataCollector")
@@ -43,9 +50,11 @@ class Operation():
         self.logger = logger
         self.__CheckFolder(self.operateInfo.dataFolderPath.lostData)
         self.__CheckFolder(self.operateInfo.dataFolderPath.rawData)
+        self.deadband = Handler.DeadbandHandler(logger)
         self.ipcClient = awsiot.greengrasscoreipc.connect(timeout=60.0)
-        self.awsMqtt = Handler.AwsMqttHandler(sys.argv[1], self.awsInfo, self.nodeInfo, logger)
+        self.awsMqtt = Handler.AwsMqttHandler(self.deadband, sys.argv[1], self.awsInfo, self.nodeInfo, self.objectInfo.device, self.deviceConfig, logger)
         self.awsMqtt.Connect(sys.argv[1])
+        self.awsMqtt.Subscribe(sys.argv[1])
         self.mutual = Factory.MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
         self.send = Handler.SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.logger)
         self.sendJob = th.Thread(target=self.send.Process)
@@ -59,7 +68,7 @@ class Operation():
         for comPort, deviceInfoList in groupby(self.objectInfo.device, key=lambda x:x.comPort):
             self.logger.info(f"Build Read Handler for {comPort}")
             read = None
-            read = Handler.ReadHandler(self.objectInfo.locationObjectID, list(deviceInfoList), self.deviceConfig, self.awsInfo, self.nodeInfo, self.operateInfo, self.ipcClient, self.logger)
+            read = Handler.ReadHandler(self.awsMqtt, self.deadband, self.objectInfo.locationObjectID, list(deviceInfoList), self.deviceConfig, self.awsInfo, self.nodeInfo, self.operateInfo, self.ipcClient, self.logger)
             readHandlerList.append(read)
             readJob = th.Thread(target=read.Process)
             readJob.start()

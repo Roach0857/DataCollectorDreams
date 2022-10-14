@@ -1,7 +1,9 @@
 from logging import Logger
+
 import Entity
 import Handler
 from Entity.ObjectInfo import DeviceInfo
+
 
 def WriteFactory(deviceInfo: DeviceInfo, deviceConfig: Entity.DeviceConfig, logger: Logger):
     factor = {"prime":Handler.PrimeHandler}

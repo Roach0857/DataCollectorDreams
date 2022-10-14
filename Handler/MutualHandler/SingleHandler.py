@@ -1,7 +1,10 @@
 from logging import Logger
-import Interface
-import Entity
+
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
+
+import Entity
+import Interface
+
 
 class SingleHandler(Interface.IMutual):
     def __init__(self, awsInfo: Entity.AwsInfo, nodeInfo: Entity.NodeInfo, GPIOInfo: Entity.GPIOInfo, ipcClient: GreengrassCoreIPCClient, logger: Logger):

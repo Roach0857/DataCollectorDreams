@@ -1,9 +1,11 @@
-from logging import Logger
-from Entity.DeviceConfig import DeviceConfig, Parse
-from Entity.ObjectInfo import DeviceInfo
 import struct
+from logging import Logger
+
 import Entity
 import Handler
+from Entity.DeviceConfig import DeviceConfig, Parse
+from Entity.ObjectInfo import DeviceInfo
+
 
 class ParseHandler(Handler.CalculateHandler):
     def __init__(self, deviceInfo: DeviceInfo, deviceConfig:DeviceConfig, logger: Logger):
