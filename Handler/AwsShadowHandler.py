@@ -5,11 +5,11 @@ from logging import Logger
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 from awsiot.greengrasscoreipc.model import UpdateThingShadowRequest
 
-import Entity
+from Entity import *
 
 
 class AwsShadowHandler():
-    def __init__(self, awsInfo:Entity.AwsInfo, nodeInfo: Entity.NodeInfo, ipcClient:GreengrassCoreIPCClient, logger:Logger):
+    def __init__(self, awsInfo:AwsInfo, nodeInfo: NodeInfo, ipcClient:GreengrassCoreIPCClient, logger:Logger):
         self.__nodeInfo = nodeInfo
         self.__awsInfo = awsInfo
         self.__logger = logger
@@ -32,11 +32,12 @@ class AwsShadowHandler():
             self.__logger.warning("Shadow Update, ex: {0} | ".format(ex), exc_info=True)
             raise ex
         
-    def GetShadowRequest(self, readResult:list[Entity.ParseData]) -> dict:
+    def GetShadowRequest(self, readResult:list[ParseData]) -> dict:
         clientDevice = {}
         for readData in readResult:
-            strDeviceID = str(readData.data['deviceID'])
-            clientDevice[strDeviceID] = readData.flag
+            if len(readData.data) != 0:
+                strDeviceID = str(readData.data['deviceID'])
+                clientDevice[strDeviceID] = True
         return {self.__awsInfo.shadowName:{
             "reported": {
                 "nodeID": self.__nodeInfo.node.id,

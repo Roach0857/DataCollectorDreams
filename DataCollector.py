@@ -16,12 +16,12 @@ from logging import Logger, handlers
 
 import awsiot.greengrasscoreipc
 
-import Entity
-import Factory
-import Handler
+from Entity import *
+from Factory import *
+from Handler import *
 
 
-def GetLogger(logInfo:Entity.LogInfo) -> Logger:
+def GetLogger(logInfo:LogInfo) -> Logger:
     logger = logging.getLogger("DataCollector")
     logger.setLevel(logInfo.consoleLevel)
     logFormat = logging.Formatter('%(asctime)s - %(thread)d | %(levelname)s : %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
@@ -41,34 +41,43 @@ def GetLogger(logInfo:Entity.LogInfo) -> Logger:
 
 class Operation():
     def __init__(self, systemInfo:dict, settingInfo:dict, logger:Logger):
-        self.awsInfo = Entity.AwsInfo(**systemInfo["awsInfo"])
-        self.nodeInfo = Entity.NodeInfo(**systemInfo["nodeInfo"])
-        self.objectInfo = Entity.ObjectInfo(**systemInfo["objectInfo"])
-        self.operateInfo = Entity.OperateInfo(**settingInfo["operateInfo"])
-        self.deviceConfig = Entity.DeviceConfig(**settingInfo["deviceConfig"])
-        self.GPIOInfo = Entity.GPIOInfo(self.nodeInfo.box.type, self.nodeInfo.node.type)
+        self.awsInfo = AwsInfo(**systemInfo["awsInfo"])
+        self.nodeInfo = NodeInfo(**systemInfo["nodeInfo"])
+        self.objectInfo = ObjectInfo(**systemInfo["objectInfo"])
+        self.operateInfo = OperateInfo(**settingInfo["operateInfo"])
+        self.deviceConfig = DeviceConfig(**settingInfo["deviceConfig"])
+        self.GPIOInfo = GPIOInfo(self.nodeInfo.box.type, self.nodeInfo.node.type)
         self.logger = logger
         self.__CheckFolder(self.operateInfo.dataFolderPath.lostData)
         self.__CheckFolder(self.operateInfo.dataFolderPath.rawData)
-        self.deadband = Handler.DeadbandHandler(logger)
+        self.deadband = DeadbandHandler(self.objectInfo.dreamsType, logger)
         self.ipcClient = awsiot.greengrasscoreipc.connect(timeout=60.0)
-        self.awsMqtt = Handler.AwsMqttHandler(self.deadband, sys.argv[1], self.awsInfo, self.nodeInfo, self.objectInfo.device, self.deviceConfig, logger)
+        self.awsMqtt = AwsMqttHandler(sys.argv[1], self.objectInfo.dreamsType, self.awsInfo, self.nodeInfo, self.objectInfo.device, self.deviceConfig, self.deadband, logger)
         self.awsMqtt.Connect(sys.argv[1])
         self.awsMqtt.Subscribe(sys.argv[1])
-        self.mutual = Factory.MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
-        self.send = Handler.SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.logger)
+        self.mutual = MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
+        self.send = SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.logger)
         self.sendJob = th.Thread(target=self.send.Process)
         self.sendJob.start()
         self.logger.info("Initialize Finish")
         
     def Process(self):
-        readHandlerList:list[Handler.ReadHandler]
+        readHandlerList:list[ReadHandler]
         readHandlerList = []
         self.objectInfo.device = sorted(self.objectInfo.device, key=lambda x:x.comPort)
         for comPort, deviceInfoList in groupby(self.objectInfo.device, key=lambda x:x.comPort):
             self.logger.info(f"Build Read Handler for {comPort}")
             read = None
-            read = Handler.ReadHandler(self.awsMqtt, self.deadband, self.objectInfo.locationObjectID, list(deviceInfoList), self.deviceConfig, self.awsInfo, self.nodeInfo, self.operateInfo, self.ipcClient, self.logger)
+            read = ReadHandler(self.objectInfo.locationObjectID, 
+                                       list(deviceInfoList), 
+                                       self.deviceConfig, 
+                                       self.awsInfo, 
+                                       self.nodeInfo, 
+                                       self.operateInfo,
+                                        self.awsMqtt, 
+                                       self.deadband,  
+                                       self.ipcClient, 
+                                       self.logger)
             readHandlerList.append(read)
             readJob = th.Thread(target=read.Process)
             readJob.start()
@@ -87,11 +96,11 @@ class Operation():
     
 if __name__ == '__main__':
     thingName = sys.argv[1]
-    configHandler = Handler.ConfigHandler()
+    configHandler = ConfigHandler()
     configHandler.GetParameter(thingName)
     systemInfo = configHandler.GetInfo("Config/SystemInfo.json")
     settingInfo = configHandler.GetInfo("Config/SettingInfo.json")
-    logInfo = Entity.LogInfo(**settingInfo["logInfo"])
+    logInfo = LogInfo(**settingInfo["logInfo"])
     logger = GetLogger(logInfo)
     try:
         op = Operation(systemInfo, settingInfo, logger)

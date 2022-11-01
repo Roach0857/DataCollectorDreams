@@ -2,16 +2,17 @@ from logging import Logger
 
 import serial
 
-import Handler
-import Interface
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Interface import *
+
+from .KacoHandler import KacoHandler
 
 
-class SerialHandler(Interface.IModbusClient, Handler.KacoHandler):
+class SerialHandler(IModbusClient, KacoHandler):
     def __init__(self, deviceInfo: DeviceInfo, logger: Logger):
         self.__deviceInfo = deviceInfo
         self.__client = serial.Serial(port=self.__deviceInfo.comPort, baudrate=9600, timeout=0.5, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE)
-        Handler.KacoHandler.__init__(self, self.__client, logger)
+        KacoHandler.__init__(self, self.__client, logger)
         self.__checkCode = self.__GetCheckCode()
         self.__serialFunction = {"kaco":self.ReadKaco}
         self.__logger = logger
@@ -31,11 +32,11 @@ class SerialHandler(Interface.IModbusClient, Handler.KacoHandler):
         return result
     
     def GetFunctionCode(self) -> str:
-        if "kaco" in  self.__deviceInfo.modelName:
+        if "kaco" in  self.__deviceInfo.connectMode:
             return "Kaco"
     
     def __GetCheckCode(self) -> str:
-        if self.__deviceInfo.modelName == "kaco_3":
+        if self.__deviceInfo.connectMode == "kaco_3":
             return "Standard"
         else:
             return "Generic"

@@ -1420,7 +1420,7 @@
                     "read": [
                         {
                             "startBit": 4145,
-                            "length": 9
+                            "length": 13
                         },
                         {
                             "startBit": 4256,
@@ -1449,116 +1449,122 @@
                             "rate": 1000.0
                         },
                         {
+                            "field": "acActiveEnergy",
+                            "startSite": 11,
+                            "length": 2,
+                            "rate": 1000.0
+                        },
+                        {
                             "field": "acVoltageL1",
-                            "startSite": 9,
+                            "startSite": 13,
                             "length": 1,
                             "rate": 10.0
                         },
                         {
                             "field": "acVoltageL2",
-                            "startSite": 10,
+                            "startSite": 14,
                             "length": 1,
                             "rate": 10.0
                         },
                         {
                             "field": "acVoltageL3",
-                            "startSite": 11,
+                            "startSite": 15,
                             "length": 1,
                             "rate": 10.0
                         },
                         {
                             "field": "acCurrentL1",
-                            "startSite": 12,
+                            "startSite": 16,
                             "length": 1,
                             "rate": 100.0
                         },
                         {
                             "field": "acCurrentL2",
-                            "startSite": 13,
+                            "startSite": 17,
                             "length": 1,
                             "rate": 100.0
                         },
                         {
                             "field": "acCurrentL3",
-                            "startSite": 14,
+                            "startSite": 18,
                             "length": 1,
                             "rate": 100.0
                         },
                         {
                             "field": "acAtivePowerL1",
-                            "startSite": 15,
+                            "startSite": 19,
                             "length": 1,
                             "rate": 1.0
                         },
                         {
                             "field": "acActivePowerL2",
-                            "startSite": 16,
+                            "startSite": 20,
                             "length": 1,
                             "rate": 1.0
                         },
                         {
                             "field": "acActivePowerL3",
-                            "startSite": 17,
+                            "startSite": 21,
                             "length": 1,
                             "rate": 1.0
                         },
                         {
                             "field": "frequency",
-                            "startSite": 21,
+                            "startSite": 25,
                             "length": 1,
                             "rate": 100.0
                         },
                         {
                             "field": "dcVoltage1",
-                            "startSite": 22,
+                            "startSite": 26,
                             "length": 1,
                             "rate": 10.0
                         },
                         {
                             "field": "dcCurrent1",
-                            "startSite": 23,
+                            "startSite": 27,
                             "length": 1,
                             "rate": 100.0
                         },
                         {
                             "field": "dcActivePower1",
-                            "startSite": 24,
+                            "startSite": 28,
                             "length": 1,
                             "rate": 1.0
                         },
                         {
                             "field": "dcVoltage2",
-                            "startSite": 25,
+                            "startSite": 29,
                             "length": 1,
                             "rate": 10.0
                         },
                         {
                             "field": "dcCurrent2",
-                            "startSite": 26,
+                            "startSite": 30,
                             "length": 1,
                             "rate": 100.0
                         },
                         {
                             "field": "dcActivePower2",
-                            "startSite": 27,
+                            "startSite": 31,
                             "length": 1,
                             "rate": 1.0
                         },
                         {
                             "field": "internalTemperature",
-                            "startSite": 28,
+                            "startSite": 32,
                             "length": 1,
                             "rate": 10.0
                         },
                         {
                             "field": "err1",
-                            "startSite": 29,
+                            "startSite": 33,
                             "length": 1,
                             "rate": 1
                         },
                         {
                             "field": "err2",
-                            "startSite": 30,
+                            "startSite": 34,
                             "length": 1,
                             "rate": 1
                         }
@@ -1873,6 +1879,12 @@
                         {
                             "field": "acCurrentL3",
                             "startSite": 20,
+                            "length": 2,
+                            "rate": 1.0
+                        },
+                        {
+                            "field": "acCurrentLN",
+                            "startSite": 24,
                             "length": 2,
                             "rate": 1.0
                         },

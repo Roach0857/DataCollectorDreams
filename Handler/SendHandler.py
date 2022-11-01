@@ -5,11 +5,11 @@ import time
 from logging import Logger
 from pathlib import Path
 
-import Handler
-from Entity.OperateInfo import OperateInfo
+from Entity import *
+from Handler import *
 
 
-class SendHandler(Handler.KinesisHandler):
+class SendHandler(KinesisHandler):
     def __init__(self, operateModel:str, operateInfo:OperateInfo, logger:Logger):
         self.__modelInfo = operateInfo.modelInfo[operateModel]
         self.__operateInfo = operateInfo
@@ -28,18 +28,21 @@ class SendHandler(Handler.KinesisHandler):
                 time.sleep(1)
             time.sleep(5)
             
-    def DoSend(self, data:dict) -> bool:
+    def DoSend(self, data:list[dict]) -> bool:
         try:
-            self.__logger.info(f"Send Data: {data}")
-            stream = self.describe(self.__modelInfo.streamName)
-            result = self.put_record(data, stream['Shards'][0]['ShardId'])
-            self.__logger.info(f"Send result:{result}")
-            return True
+            for shard in self.kinesisDetails['Shards']:
+                if 'EndingSequenceNumber' not in shard:
+                    self.__logger.info(f"Send Kinesis -> Shard:{shard},  Data:{data}")
+                    result = self.PutRecords(data, shard)
+                    self.__logger.info(f"Send result:{result}")
+                    return True
+            self.GetShards()
+            return False
         except Exception as ex:
             self.__logger.warning("__DoSend, ex: {0} | ".format(ex), exc_info=True)
             return False
         
-    def __GetData(self) -> list[tuple[dict,str]]:
+    def __GetData(self) -> list[tuple[list[dict],str]]:
         result = []
         self.__logger.debug("Start Get Lost Packet")
         fileList = sorted(Path(self.__operateInfo.dataFolderPath.lostData).iterdir(),key=os.path.getmtime)

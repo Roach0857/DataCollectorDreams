@@ -2,18 +2,18 @@ from logging import Logger
 
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 
-import Entity
-import Interface
+from Entity import *
+from Interface import *
 
 
-class MasterHandler(Interface.IMutual):
+class MasterHandler(IMutual):
     """
     Master GPIOInfo 
     pinA: Self Work Pin
     pinB: Self Internet Pin
     pinC: Slave Work Pin
     """
-    def __init__(self, awsInfo: Entity.AwsInfo, nodeInfo: Entity.NodeInfo, GPIOInfo: Entity.GPIOInfo, ipcClient: GreengrassCoreIPCClient, logger: Logger):
+    def __init__(self, awsInfo: AwsInfo, nodeInfo: NodeInfo, GPIOInfo: GPIOInfo, ipcClient: GreengrassCoreIPCClient, logger: Logger):
         self.__GPIOInfo = GPIOInfo
         self.__logger = logger
         

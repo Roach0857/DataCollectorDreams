@@ -1,14 +1,14 @@
 from logging import Logger
 
-import Handler
-import Interface
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Handler.ModbusClientHandler import *
+from Interface import *
 
 
-def ModbusClientFactory(deviceInfo:DeviceInfo, logger:Logger) -> Interface.IModbusClient:
-    factory = {"rtu":Handler.RTUHandler, "serial":Handler.SerialHandler}
+def ModbusClientFactory(deviceInfo:DeviceInfo, logger:Logger) -> IModbusClient:
+    factory = {"rtu":RTUHandler, "serial":SerialHandler}
     try:
-        if 'kaco' in deviceInfo.modelName:
+        if 'kaco' in deviceInfo.connectMode:
             return factory['serial'](deviceInfo, logger)
         else:
             return factory['rtu'](deviceInfo, logger)

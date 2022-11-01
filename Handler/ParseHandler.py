@@ -1,23 +1,38 @@
 import struct
 from logging import Logger
 
-import Entity
-import Handler
-from Entity.DeviceConfig import DeviceConfig, Parse
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Handler import *
 
 
-class ParseHandler(Handler.CalculateHandler):
-    def __init__(self, deviceInfo: DeviceInfo, deviceConfig:DeviceConfig, logger: Logger):
+class ParseHandler(CalculateHandler):
+    def __init__(self, locationObjectID:str, deviceInfo: DeviceInfo, deviceConfig:DeviceConfig, logger: Logger):
         super().__init__(deviceInfo, logger)
+        self.__locationObjectID = locationObjectID
         self.__deviceInfo = deviceInfo
         self.__logger = logger
-        self.dataConfig = deviceConfig.data[deviceInfo.type][deviceInfo.modelName]
+        self.__tienJiConfig = deviceConfig.TienJi
+        self.dataConfig = deviceConfig.data[deviceInfo.type][deviceInfo.connectMode]
         self.__parseCode = self.__GetParseCode()
         self.__parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse}
         self.__dWordFlag = True
-        
-    def ParseModbus(self, modbusResult:list) -> Entity.ParseData:
+    
+    def Process(self, modbusResult:list, readTimestamp:int) -> ParseData:
+        parseResult = self.__ParseModbus(modbusResult)
+        parseResult.data = self.CalculateData(parseResult.data)
+        parseResult.data = self.__SetData(parseResult.data, readTimestamp)
+        parseResult.err = self.__SetData(parseResult.err, readTimestamp)
+        return parseResult
+    
+    def __SetData(self, data:dict, readTimestamp:int) -> dict:
+        if len(data) != 0:
+            data["time"] = readTimestamp
+            data["deviceID"] = self.__deviceInfo.deviceID
+            data["type"] = self.__deviceInfo.type
+            data["objectID"] = self.__GetObjectID(self.__deviceInfo.flag)
+        return data
+    
+    def __ParseModbus(self, modbusResult:list) -> ParseData:
         data = {}
         err = {}
         if len(modbusResult) != 0:
@@ -28,9 +43,9 @@ class ParseHandler(Handler.CalculateHandler):
                     else:
                         data[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
         if len(data) == 0:
-            return Entity.ParseData(False, data, err)
+            return ParseData(data, err)
         else:
-            return Entity.ParseData(True, data, err)
+            return ParseData(data, err)
         
     def __BasicParse(self, modbusResult:list, parseConfig:Parse):
         value = 0
@@ -110,21 +125,20 @@ class ParseHandler(Handler.CalculateHandler):
         return binString, True
     
     def __GetParseCode(self) -> str:
-        if self.__deviceInfo.modelName == 'delta':
+        if self.__deviceInfo.connectMode == 'delta':
             self.__dWordFlag = False
             return "basic"
-        elif self.__deviceInfo.modelName in ('fronius', 'solaredge'):
+        elif self.__deviceInfo.connectMode in ('fronius', 'solaredge'):
             return "sunspec"
-        elif self.__deviceInfo.modelName in ('spm-3', 'spm-8'):
+        elif self.__deviceInfo.connectMode in ('spm-3', 'spm-8'):
             return "dm"
-        elif self.__deviceInfo.modelName in ('ctec-03', 'SP-422'):
+        elif self.__deviceInfo.connectMode in ('ctec-03', 'SP-422'):
             return "irr"  
-        elif self.__deviceInfo.modelName in ('ctec-04', 'JXBS-3001-TH', 'SD200'):
+        elif self.__deviceInfo.connectMode in ('ctec-04', 'JXBS-3001-TH', 'SD200'):
             return "temp"
         else:
             return "basic"
-        
-        
+         
     def __ParseDeviceCode(self, value) -> str:
         if type(value) is str:
             return hex(int(value))[2:].zfill(4)
@@ -136,3 +150,19 @@ class ParseHandler(Handler.CalculateHandler):
             return float(value) / rate
         else:
             return value / rate
+
+    def __GetObjectID(self, flag:int):
+        if self.__deviceInfo.type == "inv":
+            return self.__SearchObjectID(flag, self.__tienJiConfig.inv)
+        elif self.__deviceInfo.type == "dm":
+            return self.__SearchObjectID(flag, self.__tienJiConfig.dm)
+        else:
+            return self.__locationObjectID
+            
+    def __SearchObjectID(self, flag:int, objectConfig:dict[str,list[ObjectConfig]]):
+        if self.__locationObjectID in objectConfig:
+            result:list[ObjectConfig]
+            result = list(filter(lambda x: x['flag'] == str(flag), objectConfig[self.__locationObjectID]))
+            if len(result) != 0:
+                return result[0].id
+        return self.__locationObjectID

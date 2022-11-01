@@ -1,14 +1,14 @@
 from logging import Logger
 
-import Entity
-import Handler
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Handler import WriteHandler
+from Interface import *
 
 
-def WriteFactory(deviceInfo: DeviceInfo, deviceConfig: Entity.DeviceConfig, logger: Logger):
-    factor = {"prime":Handler.PrimeHandler}
+def WriteFactory(deviceInfo: DeviceInfo, deviceConfig: DeviceConfig, logger: Logger) -> IWrite:
+    factor = {"prime":WriteHandler.PrimeHandler}
     try:
-        return factor[deviceInfo.modelName](deviceInfo, deviceConfig, logger)
+        return factor[deviceInfo.connectMode](deviceInfo, deviceConfig, logger)
     except Exception as ex:
         logger.warning(f"WriteFactory, ex: {ex} | ", exc_info=True)
         raise ex

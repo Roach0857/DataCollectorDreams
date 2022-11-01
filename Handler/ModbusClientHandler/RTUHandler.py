@@ -3,11 +3,11 @@ from logging import Logger
 import serial
 from pymodbus.client.sync import ModbusSerialClient as pyRtu
 
-import Interface
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Interface import *
 
 
-class RTUHandler(Interface.IModbusClient):
+class RTUHandler(IModbusClient):
     def __init__(self, deviceInfo: DeviceInfo, logger: Logger):
         self.__deviceInfo = deviceInfo
         self.__client = pyRtu(method='rtu', port=deviceInfo.comPort, baudrate=9600, timeout=0.5, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
@@ -35,7 +35,7 @@ class RTUHandler(Interface.IModbusClient):
         return result        
 
     def GetFunctionCode(self) -> str:
-        if self.__deviceInfo.modelName in ('spm-3', 'spm-8', 'delta'):
+        if self.__deviceInfo.connectMode in ('spm-3', 'spm-8', 'delta'):
             return "0x04"
         else:
             return "0x03"

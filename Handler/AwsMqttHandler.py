@@ -8,19 +8,27 @@ from logging import Logger
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 
-import Entity
-import Handler
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Handler.DeadbandHandler import DeadbandHandler
+from Handler.DreamsHandler import DreamsHandler
 
 
-class AwsMqttHandler(Handler.DreamsHandler):
-    def __init__(self, deadband: Handler.DeadbandHandler, thingName: str, awsInfo: Entity.AwsInfo, nodeInfo: Entity.NodeInfo,
-                 deviceInfoList: list[DeviceInfo], deviceConfig: Entity.DeviceConfig, logger: Logger):
+class AwsMqttHandler(DreamsHandler):
+    def __init__(self, 
+                 thingName: str, 
+                 dreamsType: str, 
+                 awsInfo: AwsInfo, 
+                 nodeInfo: NodeInfo,
+                 deviceInfoList: list[DeviceInfo], 
+                 deviceConfig: DeviceConfig, 
+                 deadband: DeadbandHandler,
+                 logger: Logger):
         super().__init__(deviceInfoList, deviceConfig, logger)
-        self.__deadband = deadband
         self.__thingName = thingName
+        self.__dreamsType = dreamsType
         self.__awsInfo = awsInfo
         self.__nodeInfo = nodeInfo
+        self.__deadband = deadband
         self.__logger = logger
         self.__event_loop_group = io.EventLoopGroup(1)
         self.__host_resolver = io.DefaultHostResolver(self.__event_loop_group)
@@ -60,12 +68,14 @@ class AwsMqttHandler(Handler.DreamsHandler):
     def __on_message_received(self, topic: str, payload, dup, qos, retain, **kwargs):
         self.__logger.info(f"Received message from topic '{topic}': {payload}")
         message = json.loads(payload)
-        if 'invSet' in message:
-            self.SetInv(message['invNumber'], message['invSet'])
-        elif 'deadbandSet' in message:
-            self.__deadband.Set(message['deadbandSet'])
-        publishData = self.__GetAOData(message)
-        self.Publish("ao", publishData)
+        if self.__dreamsType == "slave":
+            if 'invSet' in message:
+                self.SetInv(message['invNumber'], message['invSet'])
+        elif self.__dreamsType == "master":
+            if 'deadbandSet' in message:
+                self.__deadband.Set(message['deadbandSet'])
+        publishData = self.GetAIData(message)
+        self.Publish("ai", publishData)
 
     def GetAIData(self, invNumber: int):
         result = {
@@ -78,15 +88,6 @@ class AwsMqttHandler(Handler.DreamsHandler):
         result["ai"]["invSet"]["control1"] = "".join(self.control1)
         result["ai"]["invSet"]["control2"] = "".join(self.control2)
         result["ai"]["deadbandSet"] = self.__deadband.deadbandSet.__dict__
-        return json.dumps(result)
-
-    def __GetAOData(self, message: dict) -> str:
-        result = {
-            "customerNumber": self.__thingName,
-            "invNumber": message['invNumber'],
-            "ao":{},
-            "timeStamp": int(time.mktime(datetime.datetime.now().timetuple()))
-        }
         return json.dumps(result)
 
     def Connect(self, thingName: str):

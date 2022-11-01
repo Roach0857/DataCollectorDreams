@@ -2,12 +2,12 @@ from logging import Logger
 
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 
-import Entity
-import Interface
+from Entity import *
+from Interface import *
 
 
-class SingleHandler(Interface.IMutual):
-    def __init__(self, awsInfo: Entity.AwsInfo, nodeInfo: Entity.NodeInfo, GPIOInfo: Entity.GPIOInfo, ipcClient: GreengrassCoreIPCClient, logger: Logger):
+class SingleHandler(IMutual):
+    def __init__(self, awsInfo: AwsInfo, nodeInfo: NodeInfo, GPIOInfo: GPIOInfo, ipcClient: GreengrassCoreIPCClient, logger: Logger):
         self.__logger = logger
         
     def Process(self) -> bool:

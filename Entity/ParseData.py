@@ -1,8 +1,4 @@
-from dataclasses import dataclass
-
-
-@dataclass
-class ParseData:
-   flag:bool
-   data:dict
-   err:dict 
+class ParseData():
+   def __init__(self, data:list[dict] = [], err:list[dict] = []) -> None:
+      self.data = data
+      self.err = err

@@ -17,31 +17,35 @@
         }
     },
     "objectInfo": {
+        "dreamsType": "master",
         "locationObjectID": "T0000",
         "device": [
             {
-                "type":"inv",
-                "modelName": "prime",
+                "type": "inv",
+                "connectMode": "prime",
                 "address": 1,
                 "flag": 1,
                 "deviceID": 6,
-                "comPort": "/dev/ttyUSB0"
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":0
             },
             {
-                "type":"dm",
-                "modelName": "spm-3",
+                "type": "dm",
+                "connectMode": "spm-3",
                 "address": 15,
                 "flag": 1,
                 "deviceID": 5,
-                "comPort": "/dev/ttyUSB0"
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":0
             },
             {
-                "type":"temp",
-                "modelName": "ctec-04",
+                "type": "temp",
+                "connectMode": "ctec-04",
                 "address": 17,
                 "flag": 1,
                 "deviceID": 3,
-                "comPort": "/dev/ttyUSB0"
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":0
             }
         ]
     }

@@ -1,8 +1,8 @@
 import datetime
 from logging import Logger
 
-import Handler
-from Entity.ObjectInfo import DeviceInfo
+from Entity import *
+from Handler import *
 
 
 class CalculateHandler():
@@ -11,18 +11,30 @@ class CalculateHandler():
         self.__logger = logger
         self.__calculateCode = self.__GetCalculateCode()
         self.__calculateFunction = {"basic":self.__BasicCalculate, 
-                                  "getAcActivePower":self.__GetAcActivePower, 
-                                  "getAcActiveDailyEnergy":self.__GetAcActiveDailyEnergy, 
-                                  "getAcActiveEnergy":self.__GetAcActiveEnergy}
-        self.__shelveHandler = Handler.ShelveHandler(deviceInfo.deviceID)
+                                    "getAcCurrentLN":self.__GetAcCurrentLN,
+                                    "getAcActivePower":self.__GetAcActivePower, 
+                                    "getAcActiveDailyEnergy":self.__GetAcActiveDailyEnergy, 
+                                    "getAcActiveEnergy":self.__GetAcActiveEnergy}
+        self.__shelveHandler = ShelveHandler(deviceInfo.deviceID)
         self.__scaleFalg = True
         
     def CalculateData(self, parseResult:dict) -> dict:
-        return self.__calculateFunction[self.__calculateCode](parseResult)
+        if len(parseResult) != 0:
+            return self.__calculateFunction[self.__calculateCode](parseResult)
+        else:
+            return parseResult
     
     def __BasicCalculate(self, parseResult:dict) -> dict:
         return parseResult
     
+    def __GetAcCurrentLN(self, parseResult:dict):
+        result = dict(map(lambda x:(x[0], x[1]), parseResult.items()))
+        c1 = result['acCurrentL1']
+        c2 = result['acCurrentL2']
+        c3 = result['acCurrentL3']
+        result['acCurrentLN'] = ((c1 ** 2) + (c2 ** 2) + (c3 ** 2) - (c1 * c2) - (c2 * c3) - (c3 * c1)) ** 0.5
+        return result
+        
     def __GetAcActivePower(self, parseResult:dict) -> dict:
         result = {}
         totalPower = 0
@@ -35,12 +47,11 @@ class CalculateHandler():
         return result
     
     def __GetAcActiveDailyEnergy(self, parseResult:dict) -> dict:
-        result = {}
+        result:dict
         if self.__scaleFalg:
             result = self.__CalculateScale(parseResult)
         else:
-            for field, value in parseResult.items():
-                result[field] = value
+            result = dict(map(lambda x:(x[0], x[1]), parseResult.items()))
         shelveData = self.__shelveHandler.Read()
         if shelveData != None:
             self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['acActiveEnergyDaily']}")
@@ -101,15 +112,17 @@ class CalculateHandler():
                     result[vField] = vValue
         
     def __GetCalculateCode(self):
-        if self.__deviceInfo.modelName in ('prime', 'cyberpower'):
+        if self.__deviceInfo.connectMode in ('prime', 'cyberpower'):
             return "getAcActivePower"
-        elif self.__deviceInfo.modelName  == 'fronius':
+        elif self.__deviceInfo.connectMode  == 'fronius':
             return "getAcActiveDailyEnergy"
-        elif self.__deviceInfo.modelName  == 'solaredge':
+        elif self.__deviceInfo.connectMode  == 'solaredge':
             self.__scaleFalg = False
             return "getAcActiveDailyEnergy"
-        elif self.__deviceInfo.modelName in ('kaco_1', 'kaco_2', 'kaco_3'):
+        elif self.__deviceInfo.connectMode in ('kaco_1', 'kaco_2', 'kaco_3'):
             return "getAcActiveEnergy"
+        elif self.__deviceInfo.connectMode == 'spm-3':
+            return "getAcCurrentLN"
         else:
             return "basic"
         
