@@ -6,6 +6,7 @@
         "privateKeyPath": "/greengrass/v2/privKey.key"
     },
     "nodeInfo": {
+        "powerNumber": "00-00-0000-00-0",
         "operateModel": "debug",
         "box": {
             "type": "single",

@@ -1021,7 +1021,24 @@
                             "rate": 1
                         }
                     ],
-                    "write": {}
+                    "write": {
+                        "activePower": {
+                            "startBit": 48512,
+                            "length": 1
+                        },
+                        "reactivePower": {
+                            "startBit": 48798,
+                            "length": 1
+                        },
+                        "powerFactor": {
+                            "startBit": 0,
+                            "length": 0
+                        },
+                        "vpSet": {
+                            "startBit": 48127,
+                            "length": 1
+                        }
+                    }
                 },
                 "kaco_1": {
                     "read": [],

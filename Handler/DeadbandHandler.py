@@ -12,7 +12,7 @@ def DataCalssJsonEncoder(o):
 class DeadbandHandler():
     def __init__(self, dreamsType:str, logger: Logger):
         self.__dreamsType = dreamsType
-        self.aiData = AIData()
+        self.currentData = AIData()
         self.deadbandSet = self.__GetSetting()
         self.__logger = logger
 
@@ -32,17 +32,20 @@ class DeadbandHandler():
     def Check(self, data: dict):
         if self.__dreamsType == "master":
             if data["type"] == "dm":
-                for field, value in data.items():
-                    if field in self.aiData.__dict__:
-                        if self.__CheckDeadBand(field, value):
-                            return True
+                getValue = list(filter(lambda x:x[0] in self.currentData.__dict__ , data.items()))
+                checkValue = list(map(lambda x:self.__CheckDeadBand(x[0], x[1]), getValue))
+                checkFlag = list(filter(lambda x:x == True, checkValue))
+                if len(checkFlag) != 0:
+                    return True
         return False
     
     def __CheckDeadBand(self, dataField:str, dataValue:float):
         flag = False
-        if self.aiData.__dict__[dataField] != None:
-            if abs(self.aiData.__dict__[dataField] - dataValue) > self.deadbandSet.__dict__[dataField]:
+        if self.currentData.__dict__[dataField] != None:
+            if abs(self.currentData.__dict__[dataField] - dataValue) > self.deadbandSet.__dict__[dataField]:
                 self.__logger.debug(f"Deadband trigger -> Field:{dataField}, Value:{dataValue}")
                 flag = True
-        self.aiData.__dict__[dataField] = dataValue
+        self.currentData.__dict__[dataField] = dataValue
         return flag
+    
+    

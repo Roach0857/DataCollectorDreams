@@ -1,4 +1,5 @@
 import datetime
+from queue import Queue
 import time
 from logging import Logger
 
@@ -6,11 +7,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 
 from Entity import *
-import Factory
-import Handler
+from Factory import *
+from Handler import *
 
 
-class ReadHandler(Handler.DataHandler):
+class ReadHandler(DataHandler):
     def __init__(self, 
                  locationObjectID:str, 
                  deviceInfoList: list[DeviceInfo], 
@@ -18,11 +19,12 @@ class ReadHandler(Handler.DataHandler):
                  awsInfo:AwsInfo, 
                  nodeInfo:NodeInfo, 
                  operateInfo:OperateInfo, 
-                 awsMqtt:Handler.AwsMqttHandler, 
-                 deadband:Handler.DeadbandHandler, 
+                 awsMqtt:AwsMqttHandler, 
+                 deadband:DeadbandHandler, 
                  ipcClient:GreengrassCoreIPCClient,
+                 sendQueue:Queue,
                  logger: Logger):
-        super().__init__(awsInfo, nodeInfo, operateInfo, ipcClient, logger)
+        super().__init__(awsInfo, nodeInfo, operateInfo, ipcClient, sendQueue, logger)
         self.__locationObjectID = locationObjectID
         self.__deviceInfoList = deviceInfoList
         self.__deviceConfig = deviceConfig
@@ -41,19 +43,19 @@ class ReadHandler(Handler.DataHandler):
                 result = ParseData()
                 for deviceInfo in self.__deviceInfoList:
                     parseResult = self.__ReadModbusByConfig(deviceInfo)
-                    result.data.append(parseResult.data)
-                    result.err.append(parseResult.err)
-                    if self.__deadband.Check(parseResult.data):
-                        aiData = self.__awsMqtt.GetAIData(parseResult.data['flag'])
-                        self.__awsMqtt.Publish("ai", aiData)
-                    result.data = self.__tienJiProcess(result.data)
+                    result.data.append(parseResult[0])
+                    result.err.append(parseResult[1])
+                    if self.__deadband.Check(parseResult[0]):
+                        aiData = self.__awsMqtt.GetAIData("2", currentData=parseResult[0])
+                        self.__awsMqtt.Publish(aiData)
+                result.data = self.__tienJiProcess(result.data)
                 self.readResult = result
             else:
                 time.sleep(1)
                 
-    def __ReadModbusByConfig(self, deviceInfo:DeviceInfo) -> ParseData:
-        modbus = Factory.ModbusClientFactory(deviceInfo, self.__logger)
-        parse = Handler.ParseHandler(self.__locationObjectID, deviceInfo, self.__deviceConfig, self.__logger)
+    def __ReadModbusByConfig(self, deviceInfo:DeviceInfo) -> tuple[dict, dict]:
+        modbus = ModbusClientFactory(deviceInfo, self.__logger)
+        parse = ParseHandler(self.__locationObjectID, deviceInfo, self.__deviceConfig, self.__logger)
         readCode = modbus.GetFunctionCode()
         modbusResult = []
         modbusResult.extend(list(map(lambda x:modbus.RequestModbus(readCode, x.startBit, x.length), parse.dataConfig.read)))

@@ -4,7 +4,6 @@ from .DeadbandSet import DeadbandSet
 from .DeviceConfig import DeviceConfig, ObjectConfig, Parse
 from .GPIOInfo import GPIOInfo
 
-from. InvSetCheck import InvSetCheck
 from .InvSet import InvSet
 from .LogInfo import LogInfo
 from .NodeInfo import NodeInfo

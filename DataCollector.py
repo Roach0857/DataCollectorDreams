@@ -1,4 +1,5 @@
 import os
+from queue import Queue
 import re
 import sys
 import time
@@ -56,7 +57,8 @@ class Operation():
         self.awsMqtt.Connect(sys.argv[1])
         self.awsMqtt.Subscribe(sys.argv[1])
         self.mutual = MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
-        self.send = SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.logger)
+        self.sendQueue = Queue()
+        self.send = SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.sendQueue, self.logger)
         self.sendJob = th.Thread(target=self.send.Process)
         self.sendJob.start()
         self.logger.info("Initialize Finish")
@@ -74,9 +76,10 @@ class Operation():
                                        self.awsInfo, 
                                        self.nodeInfo, 
                                        self.operateInfo,
-                                        self.awsMqtt, 
-                                       self.deadband,  
+                                       self.awsMqtt, 
+                                       self.deadband,
                                        self.ipcClient, 
+                                       self.sendQueue,
                                        self.logger)
             readHandlerList.append(read)
             readJob = th.Thread(target=read.Process)

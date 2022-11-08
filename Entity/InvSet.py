@@ -7,4 +7,3 @@ class InvSet:
     acActivePower:int = None
     acReactivePower:int = None
     vpSet:int = None
-    smartSwtich:int = 0

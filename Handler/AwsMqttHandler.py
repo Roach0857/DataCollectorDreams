@@ -1,21 +1,19 @@
-import datetime
 import json
 import sys
-import time
 from asyncio import Future
 from logging import Logger
 
+from apscheduler.schedulers.background import BackgroundScheduler
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 
 from Entity import *
-from Handler.DeadbandHandler import DeadbandHandler
-from Handler.DreamsHandler import DreamsHandler
+from Handler import *
 
 
 class AwsMqttHandler(DreamsHandler):
     def __init__(self, 
-                 thingName: str, 
+                 thingName:str,
                  dreamsType: str, 
                  awsInfo: AwsInfo, 
                  nodeInfo: NodeInfo,
@@ -23,8 +21,7 @@ class AwsMqttHandler(DreamsHandler):
                  deviceConfig: DeviceConfig, 
                  deadband: DeadbandHandler,
                  logger: Logger):
-        super().__init__(deviceInfoList, deviceConfig, logger)
-        self.__thingName = thingName
+        super().__init__(dreamsType, nodeInfo.powerNumber, deviceInfoList, deviceConfig, logger)
         self.__dreamsType = dreamsType
         self.__awsInfo = awsInfo
         self.__nodeInfo = nodeInfo
@@ -45,6 +42,9 @@ class AwsMqttHandler(DreamsHandler):
             clean_session=False,
             keep_alive_secs=30,
             http_proxy_options=None)
+        self.__backgroundScheduler = BackgroundScheduler()
+        self.__backgroundScheduler.add_job(self.__SendClass1Data, 'cron', minute='*/15', id='SelectData')
+        self.__backgroundScheduler.start()
 
     def __on_connection_interrupted(self, connection, error, **kwargs):
         self.__logger.error(f"Connection interrupted. error: {error}")
@@ -70,26 +70,21 @@ class AwsMqttHandler(DreamsHandler):
         message = json.loads(payload)
         if self.__dreamsType == "slave":
             if 'invSet' in message:
-                self.SetInv(message['invNumber'], message['invSet'])
+                self.SetInv(message)
+                aiData = self.GetAIData("2", message)
+                self.Publish(aiData, "2")
         elif self.__dreamsType == "master":
-            if 'deadbandSet' in message:
-                self.__deadband.Set(message['deadbandSet'])
-        publishData = self.GetAIData(message)
-        self.Publish("ai", publishData)
-
-    def GetAIData(self, invNumber: int):
-        result = {
-            "customerNumber": self.__thingName,
-            "invNumber": invNumber,
-            "ai":self.__deadband.aiData.__dict__,
-            "timeStamp": int(time.mktime(datetime.datetime.now().timetuple()))
-        }
-        result["ai"]["invSet"] = self.invSet[invNumber].__dict__
-        result["ai"]["invSet"]["control1"] = "".join(self.control1)
-        result["ai"]["invSet"]["control2"] = "".join(self.control2)
-        result["ai"]["deadbandSet"] = self.__deadband.deadbandSet.__dict__
-        return json.dumps(result)
-
+            if 'queryID' in message:
+                aiData = self.GetAIData("0", message, self.__deadband.currentData.__dict__, self.__deadband.deadbandSet.__dict__)
+                self.Publish(aiData, "0")
+            else:
+                if 'invSet' in message:
+                    self.SetInv(message)
+                if 'deadbandSet' in message:
+                    self.__deadband.Set(message['deadbandSet'])
+                aiData = self.GetAIData("2", message, self.__deadband.currentData.__dict__, self.__deadband.deadbandSet.__dict__)
+                self.Publish(aiData, "2")
+                    
     def Connect(self, thingName: str):
         reported = {"state": {
             "reported": {
@@ -105,13 +100,18 @@ class AwsMqttHandler(DreamsHandler):
             f"Connecting to {self.__awsInfo.endpoint} with client ID lwt-{thingName}...")
 
     def Subscribe(self):
-        topic = f"rfdme/dreams/{self.__thingName}/ao"
+        topic = f"rfdme/dreams/{self.__nodeInfo.powerNumber}/#"
         subscribeFuture, packet_id = self.__connection.subscribe(topic=topic, qos=mqtt.QoS.AT_MOST_ONCE, callback=self.__on_message_received)
         subscribeResult = subscribeFuture.result()
         self.__logger.info(f"Subscribed {topic} with {str(subscribeResult['qos'])}, packetID:{packet_id}")
 
-    def Publish(self, payloadType: str, payload: str):
-        topic = f"rfdme/dreams/{self.__thingName}/{payloadType}"
+    def Publish(self, payload: str, classType:str):
+        topic = f"rfdme/dreams/{self.__nodeInfo.powerNumber}/ai/class{classType}"
         publishFuture, packet_id = self.__connection.publish(topic=topic, qos=mqtt.QoS.AT_MOST_ONCE, payload=payload)
         publishResult = publishFuture.result()
         self.__logger.info(f"Published {topic} with {str(publishResult['qos'])}, packetID:{packet_id}, payload:{payload}")
+
+    def __SendClass1Data(self):
+        if self.__dreamsType == "master":
+            aiData = self.GetAIData("1", currentData = self.__deadband.currentData.__dict__,  deadbandSet = self.__deadband.deadbandSet.__dict__)
+            self.Publish(aiData, "1")

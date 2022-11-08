@@ -17,11 +17,11 @@ class ParseHandler(CalculateHandler):
         self.__parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse}
         self.__dWordFlag = True
     
-    def Process(self, modbusResult:list, readTimestamp:int) -> ParseData:
+    def Process(self, modbusResult:list, readTimestamp:int) -> tuple[dict, dict]:
         parseResult = self.__ParseModbus(modbusResult)
-        parseResult.data = self.CalculateData(parseResult.data)
-        parseResult.data = self.__SetData(parseResult.data, readTimestamp)
-        parseResult.err = self.__SetData(parseResult.err, readTimestamp)
+        parseResult[0] = self.CalculateData(parseResult[0])
+        parseResult[0] = self.__SetData(parseResult[0], readTimestamp)
+        parseResult[1] = self.__SetData(parseResult[1], readTimestamp)
         return parseResult
     
     def __SetData(self, data:dict, readTimestamp:int) -> dict:
@@ -32,7 +32,7 @@ class ParseHandler(CalculateHandler):
             data["objectID"] = self.__GetObjectID(self.__deviceInfo.flag)
         return data
     
-    def __ParseModbus(self, modbusResult:list) -> ParseData:
+    def __ParseModbus(self, modbusResult:list) -> tuple[dict, dict]:
         data = {}
         err = {}
         if len(modbusResult) != 0:
@@ -43,9 +43,9 @@ class ParseHandler(CalculateHandler):
                     else:
                         data[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
         if len(data) == 0:
-            return ParseData(data, err)
+            return (data, err)
         else:
-            return ParseData(data, err)
+            return (data, err)
         
     def __BasicParse(self, modbusResult:list, parseConfig:Parse):
         value = 0

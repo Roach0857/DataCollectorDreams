@@ -10,10 +10,12 @@ class PrimeHandler(RTUHandler, IWrite):
         RTUHandler.__init__(self, deviceInfo, deviceConfig, logger)
         self.__writeConfig = deviceConfig.data[deviceInfo.type][deviceInfo.connectMode].write
         self.__logger = logger
+        self.__maxPower = self.__GetMaxPower()
+        self.__maxVoltage = self.__GetMaxVoltage()
     
     def WritePowerFactor(self, value:int) -> bool:
         if value == None:
-            return False
+            return True
         if self.__GetQmode() != 1:
             if not self.__SetQmode(1):
                 self.__logger.error(f"""Can Not Set Qmode -> 
@@ -25,7 +27,7 @@ class PrimeHandler(RTUHandler, IWrite):
         if value > 0:
             setValue = value * 10
         else:
-            setValue = int(hex(((abs(value) ^ 0xffff) + 1) & 0xffff), 0)
+            setValue = int(hex(((abs(value * 10) ^ 0xffff) + 1) & 0xffff), 0)
         result = self.RequestModbus("0x06", self.__writeConfig['powerFactor'].startBit, setValue)
         if result[0] == setValue:
             return True
@@ -34,7 +36,7 @@ class PrimeHandler(RTUHandler, IWrite):
     
     def WriteActivePower(self, value:int) -> bool:
         if value == None:
-            return False
+            return True
         if self.__GetQmode() != 0:
             if not self.__SetQmode(0):
                 self.__logger.error(f"""Can Not Set Qmode -> 
@@ -51,7 +53,7 @@ class PrimeHandler(RTUHandler, IWrite):
     
     def WriteReactivePower(self, value:int) -> bool:
         if value == None:
-            return False
+            return True
         if self.__GetQmode() != 2:
             if not self.__SetQmode(2):
                 self.__logger.error(f"""Can Not Set Qmode -> 
@@ -60,43 +62,29 @@ class PrimeHandler(RTUHandler, IWrite):
                                     ModeName:{self.__deviceInfo.connectMode}, 
                                     Address:{self.__deviceInfo.address}""")
                 return False
-        if value > 0:
-            setValue = value * 10
-        else:
-            setValue = int(hex(((abs(value) ^ 0xffff) + 1) & 0xffff), 0)
-        result = self.RequestModbus("0x06", self.__writeConfig['reactivePower'].startBit, setValue)
+            if self.__maxPower == None:
+                self.__maxPower = self.__GetMaxPower()
+                return False
+            else:
+                setValue = (value / 100) * self.__maxPower
+                result = self.RequestModbus("0x06", self.__writeConfig['reactivePower'].startBit, setValue)
         if result[0] == value:
             return True
         else:
-            
             return False
     
     def WriteVpSet(self, value:int) -> bool:
         if value == None:
+            return True
+        if self.__maxVoltage == None:
+            self.__maxVoltage = self.__GetMaxVoltage()
             return False
-        setValue = (value / 100) * 220
+        setValue = int((value / 100) * self.__maxVoltage)
         result = self.RequestModbus("0x06", self.__writeConfig['vpSet'].startBit, setValue)
         if result[0] == setValue:
             return True
         else:
             return False
-        
-    def SetAutoControl(self, value:int) -> bool:
-        if value == None:
-            return False
-        qMode = self.__GetQmode()
-        if value == 1:
-            if qMode != 5:
-                return self.__SetQmode(5)
-            else:
-                self.__logger.info(f"Flag: {self.__deviceInfo.flag}, Address: {self.__deviceInfo.address}, Already Auto Control")
-                return True
-        else:
-            if qMode == 5:
-                return self.__SetQmode(0)
-            else:
-                self.__logger.info(f"Flag: {self.__deviceInfo.flag}, Address: {self.__deviceInfo.address}, Already Not Auto Control")
-                return True
         
     def __GetQmode(self) -> int:
         return self.RequestModbus("0x03", self.__writeConfig['qMode'].startBit, self.__writeConfig['qMode'].length)[0]
@@ -107,4 +95,10 @@ class PrimeHandler(RTUHandler, IWrite):
         else:
             self.__logger.error("Can not set Qmode")
             return False
+        
+    def __GetMaxPower(self) -> int:
+        return self.RequestModbus("0x06", self.__writeConfig['qMode'].startBit, 6726)[0]
+    
+    def __GetMaxVoltage(self) -> int:
+        return self.RequestModbus("0x06", self.__writeConfig['qMode'].startBit, 6724)[0]
     
