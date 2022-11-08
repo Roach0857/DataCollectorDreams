@@ -1,60 +1,30 @@
-from dataclasses import dataclass
-
-
-@dataclass
-class AIData:
-    acCurrentL1:float = None
-    acCurrentL2:float = None
-    acCurrentL3:float = None
-    acCurrentLN:float = None
-    acLineVoltageL1L2:float = None
-    acLineVoltageL2L3:float = None
-    acLineVoltageL3L1:float = None
-    acActivePower:float = None
-    acReactivePower:float = None
-    powerFactor:float = None
-    frequency:float = None
-    acActiveEnergy:float = None
-    irradiance:float = None
-    windSpeed:float = None
-
-
-    
-if __name__ == "__main__":
-    
-    data = {
-		"type": "dm",
-		"objectID": "T7422",
-		"acVoltageL1": 39625.2695,
-		"acVoltageL2": 39726.9531,
-		"acVoltageL3": 39252.9648,
-		"acLineVoltageL1L2": 68815.8125,
-		"acLineVoltageL2L3": 68476.5703,
-		"acLineVoltageL3L1": 68192.7734,
-		"acCurrentL1": 193.3008,
-		"acCurrentL2": 188.8077,
-		"acCurrentL3": 191.3091,
-		"frequency": 59.9784,
-		"acActivePowerL1": 7579055.7,
-		"acActivePowerL2": 7417969.699999999,
-		"acActivePowerL3": 7396247.999999999,
-		"powerFactor1": -0.9895,
-		"powerFactor2": -0.9891,
-		"powerFactor3": -0.985,
-		"powerFactor": -0.9879,
-		"acActiveConsumptionEnergy": 80763488.0,
-		"acActiveProductionEnergy": 675522.0,
-		"acActiveEnergy": 81439008.0,
-		"reactiveConsumptionEnergy": 7489795.0,
-		"reactiveProductionEnergy": 10127267.0,
-		"reactiveEnergy": 17617062.0,
-		"deviceID": 14703,
-		"time": 1667360100
-	}
-    # for key, value in data.items():
-    #     if key in aiData.__dict__:
-    #         aiData.__dict__[key] = value
-    AIData(dict(filter(lambda x:AIData().__dict__, data.items())))
-    getValue = list(filter(lambda x:x[0] in AIData().__dict__, data.items()))
-    test = dict(filter(lambda x:x[0] in AIData().__dict__, data.items()))
-    print("done")
+class AIData():
+	def __init__(self,
+              acCurrentL1:float = None, 
+              acCurrentL2:float = None,
+              acCurrentL3:float = None,
+              acCurrentLN:float = None,
+              acLineVoltageL1L2:float = None,
+              acLineVoltageL2L3:float = None,
+              acLineVoltageL3L1:float = None,
+              acActivePower:float = None,
+              acReactivePower:float = None,
+              powerFactor:float = None,
+              frequency:float = None,
+              acActiveEnergy:float = None,
+              irradiance:float = None,
+              windSpeed:float = None):
+		self.acCurrentL1 = acCurrentL1 * 10 if acCurrentL1 != None else  None
+		self.acCurrentL2 = acCurrentL2 * 10 if acCurrentL2 != None else  None
+		self.acCurrentL3 = acCurrentL3 * 10 if acCurrentL3 != None else  None
+		self.acCurrentLN = acCurrentLN * 10 if acCurrentLN != None else  None
+		self.acLineVoltageL1L2 = acLineVoltageL1L2 * 100 if acLineVoltageL1L2 != None else  None
+		self.acLineVoltageL2L3 = acLineVoltageL2L3 * 100 if acLineVoltageL2L3 != None else  None
+		self.acLineVoltageL3L1 = acLineVoltageL3L1 * 100 if acLineVoltageL3L1 != None else  None
+		self.acActivePower = acActivePower
+		self.acReactivePower = acReactivePower
+		self.powerFactor = powerFactor * 100 if powerFactor != None else  None
+		self.frequency = frequency * 10 if frequency != None else  None
+		self.acActiveEnergy = acActiveEnergy * 1000 if acActiveEnergy != None else  None
+		self.irradiance = irradiance
+		self.windSpeed = windSpeed

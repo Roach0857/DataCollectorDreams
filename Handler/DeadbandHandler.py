@@ -33,8 +33,8 @@ class DeadbandHandler():
         if self.__dreamsType == "master":
             if data["type"] == "dm":
                 getValue = list(filter(lambda x:x[0] in self.currentData.__dict__ , data.items()))
-                checkValue = list(map(lambda x:self.__CheckDeadBand(x[0], x[1]), getValue))
-                checkFlag = list(filter(lambda x:x == True, checkValue))
+                checkList = list(map(lambda x:self.__CheckDeadBand(x[0], x[1]), getValue))
+                checkFlag = list(filter(lambda x:x == True, checkList))
                 if len(checkFlag) != 0:
                     return True
         return False
@@ -42,7 +42,8 @@ class DeadbandHandler():
     def __CheckDeadBand(self, dataField:str, dataValue:float):
         flag = False
         if self.currentData.__dict__[dataField] != None:
-            if abs(self.currentData.__dict__[dataField] - dataValue) > self.deadbandSet.__dict__[dataField]:
+            checkeValue = (abs(self.currentData.__dict__[dataField] - dataValue) / self.currentData.__dict__[dataField]) * 100
+            if checkeValue > (self.deadbandSet.__dict__[dataField] / 100):
                 self.__logger.debug(f"Deadband trigger -> Field:{dataField}, Value:{dataValue}")
                 flag = True
         self.currentData.__dict__[dataField] = dataValue
