@@ -102,13 +102,14 @@ class DreamsHandler():
             result["invSet"] = self.invSetDict[0]
             result["invSet"]["control1"] = self.control1
             result["invSet"]["control2"] = self.control2
-            result["timeStamp"] = int(time.mktime(datetime.datetime.now().timetuple()))
+            result["timestamp"] = int(time.mktime(datetime.datetime.now().timetuple()))
         elif dataClass == "1":
             result["powerNumber"] = self.__powerNumber
             result["invNumber"] = 0
             result.update(dict(filter(lambda x:x[0] in AIData().__dict__, currentData.items())))
             result["deadbandSet"] = deadbandSet
             result["invSet"] = self.invSetDict[0]
+            result["timestamp"] = int(time.mktime(datetime.datetime.now().timetuple()))
         elif dataClass == "2":
             result["powerNumber"] = self.__powerNumber
             result["invNumber"] = 0

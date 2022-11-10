@@ -8,8 +8,8 @@ from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 
 from Entity import *
-from Handler import *
-
+from Handler.DreamsHandler import DreamsHandler
+from Handler.DeadbandHandler import DeadbandHandler
 
 class AwsMqttHandler(DreamsHandler):
     def __init__(self, 
@@ -71,8 +71,6 @@ class AwsMqttHandler(DreamsHandler):
         if self.__dreamsType == "slave":
             if 'invSet' in message:
                 self.SetInv(message)
-                aiData = self.GetAIData("2", message)
-                self.Publish(aiData, "2")
         elif self.__dreamsType == "master":
             if 'queryID' in message:
                 aiData = self.GetAIData("0", message, self.__deadband.currentData.__dict__, self.__deadband.deadbandSet.__dict__)
