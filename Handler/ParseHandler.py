@@ -14,7 +14,7 @@ class ParseHandler(CalculateHandler):
         self.__tienJiConfig = deviceConfig.TienJi
         self.dataConfig = deviceConfig.data[deviceInfo.type][deviceInfo.connectMode]
         self.__parseCode = self.__GetParseCode()
-        self.__parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse}
+        self.__parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse, "DM2436AB":self.__DM2436ABParse}
         self.__dWordFlag = True
     
     def Process(self, modbusResult:list, readTimestamp:int) -> tuple[dict, dict]:
@@ -111,6 +111,12 @@ class ParseHandler(CalculateHandler):
             value = 0 - (int(valueString, base = 2) + 1)
         return self.__ParseDeviceValue(value, parseConfig.rate)
     
+    def __DM2436ABParse(self, modbusResult:list, parseConfig:Parse):
+        result = 0
+        for i in range(4):
+            result += modbusResult[i + parseConfig.startSite] * (65536 ** (3 - i))
+        return result / parseConfig.rate
+    
     def __ConvertToBin(self, value, complementFlag = False):
         result = ''
         binString = bin(int(value))[2:].zfill(16)
@@ -128,6 +134,8 @@ class ParseHandler(CalculateHandler):
         if self.__deviceInfo.connectMode == 'delta':
             self.__dWordFlag = False
             return "basic"
+        elif self.__deviceInfo.connectMode == 'DM2436AB':
+            return "DM2436AB"
         elif self.__deviceInfo.connectMode in ('fronius', 'solaredge'):
             return "sunspec"
         elif self.__deviceInfo.connectMode in ('spm-3', 'spm-8'):

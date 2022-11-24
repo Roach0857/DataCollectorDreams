@@ -1991,7 +1991,121 @@
                         }
                     ],
                     "write": {}
+                },
+                "DM2436AB": {
+                    "read": [
+                        {
+                            "startBit": 0,
+                            "length": 16
+                        },
+                        {
+                            "startBit": 36,
+                            "length": 16
+                        },
+                        {
+                            "startBit": 72,
+                            "length": 16
+                        },
+                        {
+                            "startBit": 128,
+                            "length": 24
+                        }
+                    ],
+                    "parse": [
+                        {
+                            "field": "acVoltageL1",
+                            "startSite": 0,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acCurrentL1",
+                            "startSite": 4,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acActivePowerL1",
+                            "startSite": 12,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acVoltageL2",
+                            "startSite": 16,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acCurrentL2",
+                            "startSite": 20,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acAtivePowerL2",
+                            "startSite": 28,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acVoltageL3",
+                            "startSite": 32,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acCurrentL3",
+                            "startSite": 36,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acActivePowerL3",
+                            "startSite": 44,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "powerFactor",
+                            "startSite": 48,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acActiveEnergy",
+                            "startSite": 52,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acReactiveEnergy",
+                            "startSite": 56,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acLineVoltageL1L2",
+                            "startSite": 60,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acLineVoltageL2L3",
+                            "startSite": 64,
+                            "length": 4,
+                            "rate": 1000.0
+                        },
+                        {
+                            "field": "acLineVoltageL3L1",
+                            "startSite": 68,
+                            "length": 4,
+                            "rate": 1000.0
+                        }
+                    ],
+                    "write": {}
                 }
+
             },
             "irr": {
                 "ctec-03": {
