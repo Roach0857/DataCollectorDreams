@@ -20,6 +20,8 @@ class KacoHandler():
             result.append(str(r)[2:-1])
         if not self.__checkFunction[checkCode](result, rawData, rawDataSplit, address):
             return None
+        if checkCode == 'Generic':
+            result[-3] = result[-3][:-1]
         return result
 
     def __OneByteChecksum(self, result:list[str], rawData:bytes, rawDataSplit:list[bytes], address:int) -> bool:
