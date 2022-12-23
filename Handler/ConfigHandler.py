@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 import time
 
 import boto3
@@ -18,9 +17,9 @@ class ConfigHandler():
         Result = json.loads(FileData)
         return Result
     
-    def __Check(self) -> bool:
+    def __Check(self, thingName:str) -> bool:
         result = False
-        systemType = sys.argv[1].split("-")[1]
+        systemType = thingName[-3]
         if systemType == "ecu":
             return True
         elif systemType == "debug":
@@ -51,7 +50,7 @@ class ConfigHandler():
         session = boto3.Session()
         credentials = session.get_credentials()
         try:
-            if self.__Check():
+            if self.__Check(thingName):
                 result = None
                 ssm_client = boto3.client('ssm', 
                                         region_name=session.region_name,
