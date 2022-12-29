@@ -46,7 +46,7 @@ class ReadHandler(DataHandler):
                     result.data.append(parseResult[0])
                     result.err.append(parseResult[1])
                     if self.__deadband.Check(parseResult[0]):
-                        aiData = self.__awsMqtt.GetAIData("2", currentData=parseResult[0])
+                        aiData = self.__awsMqtt.GetAIData("2", currentData=self.__deadband.currentData)
                         self.__awsMqtt.Publish(aiData)
                 result.data = self.__tienJiProcess(result.data)
                 self.readResult = result

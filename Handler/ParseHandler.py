@@ -42,10 +42,7 @@ class ParseHandler(CalculateHandler):
                         err[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
                     else:
                         data[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
-        if len(data) == 0:
-            return (data, err)
-        else:
-            return (data, err)
+        return (data, err)
         
     def __BasicParse(self, modbusResult:list, parseConfig:Parse):
         value = 0
@@ -62,7 +59,7 @@ class ParseHandler(CalculateHandler):
                 value = lowWord
         else:
             value = modbusResult[parseConfig.startSite]
-        if parseConfig.field[:3] == "err":
+        if "err" in parseConfig.field:
             return self.__ParseDeviceCode(value)
         else:
             return self.__ParseDeviceValue(value, parseConfig.rate)

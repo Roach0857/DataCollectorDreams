@@ -2194,6 +2194,25 @@
                     ],
                     "write": {}
                 }
+            },
+            "wind":{
+                "CWS-014A": {
+                    "read": [
+                        {
+                            "startBit": 6,
+                            "length": 1
+                        }
+                    ],
+                    "parse": [
+                        {
+                            "field": "windSpeed",
+                            "startSite": 0,
+                            "length": 1,
+                            "rate": 10
+                        }
+                    ],
+                    "write": {}
+                }
             }
         },
         "TienJi": {

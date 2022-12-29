@@ -35,7 +35,7 @@ class RTUHandler(IModbusClient):
         return result        
 
     def GetFunctionCode(self) -> str:
-        if self.__deviceInfo.connectMode in ('spm-3', 'spm-8', 'delta'):
+        if self.__deviceInfo.connectMode in ('spm-3', 'spm-8', 'delta', 'CWS-014A'):
             return "0x04"
         else:
             return "0x03"
