@@ -164,9 +164,9 @@ class ParseHandler(CalculateHandler):
         else:
             return self.__locationObjectID
             
-    def __SearchObjectID(self, flag:int, objectConfig:dict[str,list[ObjectConfig]]):
+    def __SearchObjectID(self, flag:int, objectConfig:dict[str,list[splitInfo]]):
         if self.__locationObjectID in objectConfig:
-            result:list[ObjectConfig]
+            result:list[splitInfo]
             result = list(filter(lambda x: x['flag'] == str(flag), objectConfig[self.__locationObjectID]))
             if len(result) != 0:
                 return result[0].id

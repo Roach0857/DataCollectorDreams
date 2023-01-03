@@ -10,3 +10,4 @@ from .ParseHandler import ParseHandler
 from .ReadHandler import ReadHandler
 from .SendHandler import SendHandler
 from .ShelveHandler import ShelveHandler
+from .MqttHandler import MqttHandler

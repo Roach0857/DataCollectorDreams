@@ -19,7 +19,7 @@ class ReadHandler(DataHandler):
                  awsInfo:AwsInfo, 
                  nodeInfo:NodeInfo, 
                  operateInfo:OperateInfo, 
-                 awsMqtt:AwsMqttHandler, 
+                 mqtt:MqttHandler,
                  deadband:DeadbandHandler, 
                  ipcClient:GreengrassCoreIPCClient,
                  sendQueue:Queue,
@@ -28,7 +28,7 @@ class ReadHandler(DataHandler):
         self.__locationObjectID = locationObjectID
         self.__deviceInfoList = deviceInfoList
         self.__deviceConfig = deviceConfig
-        self.__awsMqtt = awsMqtt
+        self.__mqtt = mqtt
         self.__deadband = deadband
         self.__logger = logger
         self.systemFlag = True
@@ -46,9 +46,9 @@ class ReadHandler(DataHandler):
                     result.data.append(parseResult[0])
                     result.err.append(parseResult[1])
                     if self.__deadband.Check(parseResult[0]):
-                        aiData = self.__awsMqtt.GetAIData("2", currentData=self.__deadband.currentData)
-                        self.__awsMqtt.Publish(aiData)
-                result.data = self.__tienJiProcess(result.data)
+                        aiData = self.__mqtt.GetAIData("2", currentData=self.__deadband.currentData)
+                        self.__mqtt.Publish(aiData)
+                result.data = self.__TienJiProcess(result.data)
                 self.readResult = result
             else:
                 time.sleep(1)
@@ -64,29 +64,30 @@ class ReadHandler(DataHandler):
         self.__logger.info(f"Result: {modbusResult}")
         return parse.Process(modbusResult, readTimestamp)
     
-    def __tienJiProcess(self, parseDataList:list[dict]) -> list[dict]:
+    def __TienJiProcess(self, parseDataList:list[dict]) -> list[dict]:
         fieldList=["acCurrentL1","acCurrentL2","acCurrentL3","acActivePowerL1","acActivePowerL2","acActivePowerL3","acActiveEnergy","reactiveEnergy"]
         checkList = list(filter(lambda x:len(x) != 0, parseDataList)) 
         if len(checkList) != 0:
             if checkList[0]['type'] == 'dm':
                 if self.__locationObjectID in self.__deviceConfig.TienJi.dm:
-                    masterData:list[dict]
-                    masterData = list(filter(lambda x:x['objectID'] == self.__locationObjectID, parseDataList))
-                    if len(masterData) != 0:
-                        result:list[dict]
-                        objectConfig = self.__deviceConfig.TienJi.dm[self.__locationObjectID]
-                        result = list(filter(lambda x:x['objectID'] != self.__locationObjectID, parseDataList))
-                        if len(checkList) != (len(objectConfig) + 1):
-                            return result
-                        else:
-                            temp = {}
-                            for k, v in masterData[0].items():
-                                if k in fieldList:
-                                    vv = 0
-                                    for r in result:
-                                        vv += r[k]
-                                    temp[k] = v - (vv)
+                    mainDmList:list[dict]
+                    mainDmList = list(filter(lambda x:x['objectID'] == self.__locationObjectID, parseDataList))
+                    if len(mainDmList) != 0:
+                        result = []
+                        lowDmList:list[dict]
+                        splitInfoList = self.__deviceConfig.TienJi.dm[self.__locationObjectID]
+                        lowDmList = list(filter(lambda x:x['objectID'] != self.__locationObjectID, parseDataList))
+                        if len(checkList) == (len(splitInfoList) + 1):
+                            mainDm = {}
+                            for field, value in mainDmList[0].items():
+                                if field in fieldList:
+                                    totalValue = 0
+                                    for lowDm in lowDmList:
+                                        totalValue += lowDm[field]
+                                    mainDm[field] = value - totalValue
                                 else:
-                                    temp[k] = v
-                            return result
+                                    mainDm[field] = value
+                            result.append(mainDm)
+                        result.extend(lowDmList)
+                        return result
         return parseDataList

@@ -1,10 +1,4 @@
 {
-    "awsInfo": {
-        "shadowName": "state",
-        "endpoint": "a3s0shx085zc58-ats.iot.us-west-2.amazonaws.com",
-        "certificatePath": "/greengrass/v2/thingCert.crt",
-        "privateKeyPath": "/greengrass/v2/privKey.key"
-    },
     "nodeInfo": {
         "powerNumber": "00-00-0000-00-0",
         "operateModel": "debug",

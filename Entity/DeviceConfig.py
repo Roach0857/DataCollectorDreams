@@ -20,14 +20,14 @@ class DataConfig:
         self.write = {wK:Read(**wV) for wK, wV in write.items()}
 
 @dataclass
-class ObjectConfig:
+class splitInfo:
     id: str
     flag: str
 
 class splitConfig:
     def __init__(self, dm:dict[str,list] , inv:dict[str,list]):
-        self.dm = {sK:[ObjectConfig(**v)for v in sV] for sK, sV in dm.items()}
-        self.inv = {iK:[ObjectConfig(**v)for v in iV] for iK, iV in inv.items()}
+        self.dm = {sK:[splitInfo(**v)for v in sV] for sK, sV in dm.items()}
+        self.inv = {iK:[splitInfo(**v)for v in iV] for iK, iV in inv.items()}
 
 class DeviceConfig:
     def __init__(self, data:dict[str, dict], TienJi: dict):

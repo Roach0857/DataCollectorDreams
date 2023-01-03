@@ -42,7 +42,8 @@ def GetLogger(logInfo:LogInfo) -> Logger:
 
 class Operation():
     def __init__(self, systemInfo:dict, settingInfo:dict, logger:Logger):
-        self.awsInfo = AwsInfo(**systemInfo["awsInfo"])
+        self.mqttInfo = MqttInfo(**settingInfo["mqttInfo"])
+        self.awsInfo = AwsInfo(**settingInfo["awsInfo"])
         self.nodeInfo = NodeInfo(**systemInfo["nodeInfo"])
         self.objectInfo = ObjectInfo(**systemInfo["objectInfo"])
         self.operateInfo = OperateInfo(**settingInfo["operateInfo"])
@@ -53,9 +54,11 @@ class Operation():
         self.__CheckFolder(self.operateInfo.dataFolderPath.rawData)
         self.deadband = DeadbandHandler(self.objectInfo.dreamsType, logger)
         self.ipcClient = awsiot.greengrasscoreipc.connect(timeout=60.0)
-        self.awsMqtt = AwsMqttHandler(sys.argv[1], self.objectInfo.dreamsType, self.awsInfo, self.nodeInfo, self.objectInfo.device, self.deviceConfig, self.deadband, logger)
-        self.awsMqtt.Connect(sys.argv[1])
-        self.awsMqtt.Subscribe(sys.argv[1])
+        self.awsMqtt = AwsMqttHandler(sys.argv[1],self.awsInfo, self.nodeInfo, self.logger)
+        self.awsMqtt.Connect()
+        self.mqtt = MqttHandler(sys.argv[1], self.objectInfo.dreamsType, self.mqttInfo, self.nodeInfo, self.objectInfo.device, self.deviceConfig, self.deadband, logger)
+        self.mqtt.Connect()
+        self.mqtt.Subscribe()
         self.mutual = MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
         self.sendQueue = Queue()
         self.send = SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.sendQueue, self.logger)
@@ -76,7 +79,7 @@ class Operation():
                                        self.awsInfo, 
                                        self.nodeInfo, 
                                        self.operateInfo,
-                                       self.awsMqtt, 
+                                       self.mqtt, 
                                        self.deadband,
                                        self.ipcClient, 
                                        self.sendQueue,
