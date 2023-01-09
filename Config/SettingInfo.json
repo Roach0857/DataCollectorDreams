@@ -246,8 +246,8 @@
                             "length": 2
                         },
                         {
-                            "startBit": 50001,
-                            "length": 9
+                            "startBit": 32008,
+                            "length": 3
                         }
                     ],
                     "parse": [
@@ -406,42 +406,6 @@
                             "startSite": 40,
                             "length": 1,
                             "rate": 1
-                        },
-                        {
-                            "field": "err4",
-                            "startSite": 41,
-                            "length": 1,
-                            "rate": 1
-                        },
-                        {
-                            "field": "err5",
-                            "startSite": 42,
-                            "length": 1,
-                            "rate": 1
-                        },
-                        {
-                            "field": "err6",
-                            "startSite": 43,
-                            "length": 1,
-                            "rate": 1
-                        },
-                        {
-                            "field": "err7",
-                            "startSite": 44,
-                            "length": 1,
-                            "rate": 1
-                        },
-                        {
-                            "field": "err8",
-                            "startSite": 45,
-                            "length": 1,
-                            "rate": 1
-                        },
-                        {
-                            "field": "err9",
-                            "startSite": 46,
-                            "length": 1,
-                            "rate": 1
                         }
                     ],
                     "write": {}
@@ -469,8 +433,12 @@
                             "length": 1
                         },
                         {
-                            "startBit": 32008,
-                            "length": 3
+                            "startBit": 50000,
+                            "length": 10
+                        },
+                        {
+                            "startBit": 50016,
+                            "length": 1
                         }
                     ],
                     "parse": [
@@ -641,6 +609,54 @@
                             "startSite": 36,
                             "length": 1,
                             "rate": 1
+                        },
+                        {
+                            "field": "err4",
+                            "startSite": 37,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err5",
+                            "startSite": 38,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err6",
+                            "startSite": 39,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err7",
+                            "startSite": 40,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err8",
+                            "startSite": 41,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err9",
+                            "startSite": 42,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err10",
+                            "startSite": 43,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err11",
+                            "startSite": 44,
+                            "length": 1,
+                            "rate": 1
                         }
                     ],
                     "write": {}
@@ -803,7 +819,7 @@
                         },
                         {
                             "field": "err1",
-                            "startSite": 29,
+                            "startSite": 31,
                             "length": 1,
                             "rate": 1
                         }

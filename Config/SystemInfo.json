@@ -8,7 +8,7 @@
         },
         "node": {
             "type": "master",
-            "id": 5
+            "id": 1
         }
     },
     "objectInfo": {
@@ -20,25 +20,7 @@
                 "connectMode": "prime",
                 "address": 1,
                 "flag": 1,
-                "deviceID": 6,
-                "comPort": "/dev/ttyUSB0",
-                "dreamsFlag":0
-            },
-            {
-                "type": "dm",
-                "connectMode": "spm-3",
-                "address": 15,
-                "flag": 1,
-                "deviceID": 5,
-                "comPort": "/dev/ttyUSB0",
-                "dreamsFlag":0
-            },
-            {
-                "type": "temp",
-                "connectMode": "ctec-04",
-                "address": 17,
-                "flag": 1,
-                "deviceID": 3,
+                "deviceID": 1,
                 "comPort": "/dev/ttyUSB0",
                 "dreamsFlag":0
             }

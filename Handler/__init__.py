@@ -6,8 +6,8 @@ from .DataHandler import DataHandler
 from .DeadbandHandler import DeadbandHandler
 from .DreamsHandler import DreamsHandler
 from .KinesisHandler import KinesisHandler
+from .MqttHandler import MqttHandler
 from .ParseHandler import ParseHandler
 from .ReadHandler import ReadHandler
 from .SendHandler import SendHandler
 from .ShelveHandler import ShelveHandler
-from .MqttHandler import MqttHandler
