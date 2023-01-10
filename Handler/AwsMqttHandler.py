@@ -2,11 +2,10 @@ import json
 import sys
 from asyncio import Future
 from logging import Logger
-
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
-
-from Entity import *
+from Entity.AwsInfo import AwsInfo
+from Entity.NodeInfo import NodeInfo
 
 class AwsMqttHandler():
     def __init__(self, thingName:str, awsInfo: AwsInfo, nodeInfo: NodeInfo, logger: Logger):

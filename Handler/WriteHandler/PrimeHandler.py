@@ -1,8 +1,8 @@
 from logging import Logger
-
-from Entity import *
-from Handler.ModbusClientHandler import *
-from Interface import *
+from Entity.DeviceConfig import DeviceConfig
+from Entity.ObjectInfo import DeviceInfo
+from Handler.ModbusClientHandler.RTUHandler import RTUHandler
+from Interface.IWrite import IWrite
 
 
 class PrimeHandler(RTUHandler, IWrite):

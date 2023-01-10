@@ -1,12 +1,12 @@
 
 import json
 from logging import Logger
-
-
-from Entity import *
+from Entity.DeviceConfig import DeviceConfig
+from Entity.MqttInfo import MqttInfo
+from Entity.NodeInfo import NodeInfo
+from Entity.ObjectInfo import DeviceInfo
 from Handler.DreamsHandler import DreamsHandler
 from Handler.DeadbandHandler import DeadbandHandler
-
 from apscheduler.schedulers.background import BackgroundScheduler
 import paho.mqtt.client as mqtt
 

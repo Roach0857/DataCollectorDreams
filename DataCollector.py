@@ -3,24 +3,31 @@ from queue import Queue
 import re
 import sys
 import time
-
 systemType = sys.argv[1].split("-")[1]
 if systemType != "raspberry":
     import DebugGPIO as GPIO 
 else:
     import RPi.GPIO as GPIO 
-
 import logging
 import threading as th
 from itertools import groupby
 from logging import Logger, handlers
-
 import awsiot.greengrasscoreipc
-
-from Entity import *
-from Factory import *
-from Handler import *
-
+from Entity.AwsInfo import AwsInfo
+from Entity.DeviceConfig import DeviceConfig
+from Entity.GPIOInfo import GPIOInfo
+from Entity.LogInfo import LogInfo
+from Entity.MqttInfo import MqttInfo
+from Entity.NodeInfo import NodeInfo
+from Entity.ObjectInfo import ObjectInfo
+from Entity.OperateInfo import OperateInfo
+from Handler.AwsMqttHandler import AwsMqttHandler
+from Handler.DeadbandHandler import DeadbandHandler
+from Handler.SendHandler import SendHandler
+from Handler.ReadHandler import ReadHandler
+from Handler.MqttHandler import MqttHandler
+from Handler.ConfigHandler import ConfigHandler
+from Factory.MutualFactory import MutualFactory
 
 def GetLogger(logInfo:LogInfo) -> Logger:
     logger = logging.getLogger("DataCollector")

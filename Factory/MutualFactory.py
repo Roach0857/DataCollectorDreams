@@ -1,20 +1,21 @@
 from logging import Logger
-
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
-
-from Entity import *
-from Handler import MutualHandler
-from Interface import *
-
+from Entity.AwsInfo import AwsInfo
+from Entity.GPIOInfo import GPIOInfo
+from Entity.NodeInfo import NodeInfo
+from Interface.IMutual import IMutual
+from Handler.MutualHandler.MasterHandler import MasterHandler
+from Handler.MutualHandler.SlaveHandler import SlaveHandler
+from Handler.MutualHandler.SingleHandler import SingleHandler
 
 def MutualFactory(awsInfo:AwsInfo, nodeInfo:NodeInfo, GPIOInfo:GPIOInfo, ipcClient:GreengrassCoreIPCClient, logger:Logger) -> IMutual:
     factory = {
         "dual":{
-            "master":MutualHandler.MasterHandler, 
-            "slave":MutualHandler.SlaveHandler
+            "master":MasterHandler, 
+            "slave":SlaveHandler
             }, 
         "single":{
-            "master":MutualHandler.SingleHandler
+            "master":SingleHandler
             }}
     try:
         if nodeInfo.box.type in factory:

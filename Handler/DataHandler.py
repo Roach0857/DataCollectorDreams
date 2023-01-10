@@ -3,12 +3,13 @@ from datetime import datetime
 from logging import Logger
 from queue import Queue
 import uuid
-
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 
-from Entity import *
-from Handler import *
-
+from Entity.AwsInfo import AwsInfo
+from Entity.NodeInfo import NodeInfo
+from Entity.OperateInfo import OperateInfo
+from Entity.ParseData import ParseData
+from Handler.AwsShadowHandler import AwsShadowHandler
 
 class DataHandler(AwsShadowHandler):
     def __init__(self, awsInfo: AwsInfo, nodeInfo: NodeInfo,  operateInfo:OperateInfo, ipcClient:GreengrassCoreIPCClient, sendQueue:Queue, logger: Logger):

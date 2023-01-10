@@ -1,9 +1,9 @@
 import struct
 from logging import Logger
 
-from Entity import *
-from Handler import *
-
+from Entity.DeviceConfig import DeviceConfig, Parse, splitInfo
+from Entity.ObjectInfo import DeviceInfo
+from Handler.CalculateHandler import CalculateHandler
 
 class ParseHandler(CalculateHandler):
     def __init__(self, locationObjectID:str, deviceInfo: DeviceInfo, deviceConfig:DeviceConfig, logger: Logger):
@@ -18,11 +18,11 @@ class ParseHandler(CalculateHandler):
         self.__dWordFlag = True
     
     def Process(self, modbusResult:list, readTimestamp:int) -> tuple[dict, dict]:
-        parseResult = self.__ParseModbus(modbusResult)
-        parseResult[0] = self.CalculateData(parseResult[0])
-        parseResult[0] = self.__SetData(parseResult[0], readTimestamp)
-        parseResult[1] = self.__SetData(parseResult[1], readTimestamp)
-        return parseResult
+        deviceResult, errResult = self.__ParseModbus(modbusResult)
+        deviceResult = self.CalculateData(deviceResult)
+        deviceResult = self.__SetData(deviceResult, readTimestamp)
+        errResult = self.__SetData(errResult, readTimestamp)
+        return (deviceResult, errResult)
     
     def __SetData(self, data:dict, readTimestamp:int) -> dict:
         if len(data) != 0:
@@ -42,7 +42,7 @@ class ParseHandler(CalculateHandler):
                         err[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
                     else:
                         data[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
-        return (data, err)
+        return data, err
         
     def __BasicParse(self, modbusResult:list, parseConfig:Parse):
         value = 0

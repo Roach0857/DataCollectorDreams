@@ -4,11 +4,12 @@ import json
 import os
 from logging import Logger
 import time
-
-from Entity import *
-from Factory import *
 import threading as th
-
+from Entity.AIData import AIData
+from Entity.DeviceConfig import DeviceConfig
+from Entity.InvSet import InvSet
+from Entity.ObjectInfo import DeviceInfo
+from Factory.WriteFactory import WriteFactory
 
 def DataCalssJsonEncoder(o):
     return dataclasses.asdict(o) if dataclasses.is_dataclass(o) else json.JSONEncoder.default(o)

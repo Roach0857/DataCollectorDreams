@@ -1,8 +1,6 @@
 from logging import Logger
-
 import crcmod
 import serial
-
 
 class KacoHandler():
     def __init__(self, client:serial.Serial, logger:Logger):

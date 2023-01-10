@@ -1,11 +1,11 @@
 import sys
 from logging import Logger
-
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
-
-from Entity import *
-from Handler import *
-from Interface import *
+from Entity.AwsInfo import AwsInfo
+from Entity.GPIOInfo import GPIOInfo
+from Entity.NodeInfo import NodeInfo
+from Handler.AwsShadowHandler import AwsShadowHandler
+from Interface.IMutual import IMutual
 
 
 class SlaveHandler(IMutual, AwsShadowHandler):

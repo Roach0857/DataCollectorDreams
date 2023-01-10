@@ -1,11 +1,8 @@
 from logging import Logger
-
 import serial
-
-from Entity import *
-from Interface import *
-
-from .KacoHandler import KacoHandler
+from Entity.ObjectInfo import DeviceInfo
+from Interface.IModbusClient import IModbusClient
+from Handler.ModbusClientHandler.KacoHandler import KacoHandler
 
 
 class SerialHandler(IModbusClient, KacoHandler):

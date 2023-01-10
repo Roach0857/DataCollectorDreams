@@ -1,4 +1,7 @@
-class ParseData():
-   def __init__(self, data:list[dict] = [], err:list[dict] = []) -> None:
-      self.data = data
-      self.err = err
+from dataclasses import dataclass, field
+
+
+@dataclass
+class ParseData:
+    data:list[dict] = field(default_factory=lambda: [])
+    err:list[dict] = field(default_factory=lambda: [])

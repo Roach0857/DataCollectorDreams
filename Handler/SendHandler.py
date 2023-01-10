@@ -5,10 +5,8 @@ from queue import Queue
 import time
 from logging import Logger
 from pathlib import Path
-
-from Entity import *
-from Handler import *
-
+from Entity.OperateInfo import OperateInfo
+from Handler.KinesisHandler import KinesisHandler
 
 class SendHandler(KinesisHandler):
     def __init__(self, operateModel:str, operateInfo:OperateInfo, sendQueue:Queue, logger:Logger):
@@ -36,7 +34,7 @@ class SendHandler(KinesisHandler):
             for shard in self.kinesisDetails['Shards']:
                 if 'EndingSequenceNumber' not in shard:
                     self.__logger.info(f"Send Kinesis -> Shard:{shard},  Data:{data}")
-                    result = self.PutRecords(data, shard)
+                    result = self.PutRecords(data)
                     self.__logger.info(f"Send result:{result}")
                     return True
             self.GetShards()

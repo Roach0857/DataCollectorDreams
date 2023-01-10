@@ -1,9 +1,9 @@
 from logging import Logger
-
 from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
-
-from Entity import *
-from Interface import *
+from Entity.AwsInfo import AwsInfo
+from Entity.GPIOInfo import GPIOInfo
+from Entity.NodeInfo import NodeInfo
+from Interface.IMutual import IMutual
 
 
 class SingleHandler(IMutual):

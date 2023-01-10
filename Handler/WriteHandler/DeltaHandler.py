@@ -1,8 +1,9 @@
 from logging import Logger
+from Entity.DeviceConfig import DeviceConfig
+from Entity.ObjectInfo import DeviceInfo
+from Handler.ModbusClientHandler.RTUHandler import RTUHandler
+from Interface.IWrite import IWrite
 
-from Entity import *
-from Handler.ModbusClientHandler import *
-from Interface import *
 
 class DeltaHandler(RTUHandler, IWrite):
     def __init__(self, deviceInfo: DeviceInfo, deviceConfig: DeviceConfig, logger: Logger):
