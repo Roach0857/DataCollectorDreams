@@ -661,15 +661,11 @@
                     ],
                     "write": {}
                 },
-                "solaredge": {
+                "solaredge_1": {
                     "read": [
                         {
                             "startBit": 40072,
-                            "length": 30
-                        },
-                        {
-                            "startBit": 40107,
-                            "length": 2
+                            "length": 37
                         }
                     ],
                     "parse": [
@@ -692,7 +688,19 @@
                             "rate": 1.0
                         },
                         {
-                            "field": "acCurrentLSF",
+                            "field": "acCurrentL1SF",
+                            "startSite": 3,
+                            "length": 1,
+                            "rate": 1.0
+                        },
+                        {
+                            "field": "acCurrentL2SF",
+                            "startSite": 3,
+                            "length": 1,
+                            "rate": 1.0
+                        },
+                        {
+                            "field": "acCurrentL3SF",
                             "startSite": 3,
                             "length": 1,
                             "rate": 1.0
@@ -716,7 +724,19 @@
                             "rate": 1.0
                         },
                         {
-                            "field": "acVoltageLSF",
+                            "field": "acVoltageL1SF",
+                            "startSite": 10,
+                            "length": 1,
+                            "rate": 1.0
+                        },
+                        {
+                            "field": "acVoltageL2SF",
+                            "startSite": 10,
+                            "length": 1,
+                            "rate": 1.0
+                        },
+                        {
+                            "field": "acVoltageL3SF",
                             "startSite": 10,
                             "length": 1,
                             "rate": 1.0
@@ -776,7 +796,7 @@
                             "rate": 1.0
                         },
                         {
-                            "field": "dcCurrentSF",
+                            "field": "dcCurrent1SF",
                             "startSite": 25,
                             "length": 1,
                             "rate": 1.0
@@ -788,7 +808,7 @@
                             "rate": 1.0
                         },
                         {
-                            "field": "dcVoltageSF",
+                            "field": "dcVoltage1SF",
                             "startSite": 27,
                             "length": 1,
                             "rate": 1.0
@@ -800,16 +820,22 @@
                             "rate": 1.0
                         },
                         {
-                            "field": "dcActivePowerSF",
+                            "field": "dcActivePower1SF",
                             "startSite": 29,
                             "length": 1,
                             "rate": 1.0
                         },
                         {
                             "field": "status",
-                            "startSite": 30,
+                            "startSite": 35,
                             "length": 1,
                             "rate": 1.0
+                        },
+                        {
+                            "field": "err1",
+                            "startSite": 36,
+                            "length": 1,
+                            "rate": 1
                         },
                         {
                             "field": "dcActivePower",
@@ -818,13 +844,291 @@
                             "rate": 1.0
                         },
                         {
-                            "field": "err1",
-                            "startSite": 31,
+                            "field": "dcActivePowerSF",
+                            "startSite": 29,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1.0
                         }
                     ],
                     "write": {}
+                },
+                "solaredge_2": {
+                    "Read": [
+                        {
+                            "StartBit": 40072,
+                            "Length": 37
+                        },
+                        {
+                            "StartBit": 40123,
+                            "Length": 3
+                        },
+                        {
+                            "StartBit": 40140,
+                            "Length": 3
+                        },
+                        {
+                            "StartBit": 40160,
+                            "Length": 3
+                        },
+                        {
+                            "StartBit": 40180,
+                            "Length": 3
+                        }
+                    ],
+                    "Parse": [
+                        {
+                            "Field": "acCurrentL1",
+                            "StartSite": 0,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acCurrentL2",
+                            "StartSite": 1,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acCurrentL3",
+                            "StartSite": 2,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acCurrentL1SF",
+                            "StartSite": 3,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acCurrentL2SF",
+                            "StartSite": 3,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acCurrentL3SF",
+                            "StartSite": 3,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acVoltageL1",
+                            "StartSite": 7,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acVoltageL2",
+                            "StartSite": 8,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acVoltageL3",
+                            "StartSite": 9,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acVoltageL1SF",
+                            "StartSite": 10,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acVoltageL2SF",
+                            "StartSite": 10,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acVoltageL3SF",
+                            "StartSite": 10,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acActivePower",
+                            "StartSite": 11,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acActivePowerSF",
+                            "StartSite": 12,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "frequency",
+                            "StartSite": 13,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "frequencySF",
+                            "StartSite": 14,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "powerFactor",
+                            "StartSite": 19,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "powerFactorSF",
+                            "StartSite": 20,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "acActiveEnergy",
+                            "StartSite": 21,
+                            "Length": 2,
+                            "Rate": 1000.0
+                        },
+                        {
+                            "Field": "acActiveEnergySF",
+                            "StartSite": 23,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower",
+                            "StartSite": 28,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePowerSF",
+                            "StartSite": 29,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "status",
+                            "StartSite": 35,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "err1",
+                            "StartSite": 36,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcCurrent1SF",
+                            "StartSite": 37,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcCurrent2SF",
+                            "StartSite": 37,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcCurrent3SF",
+                            "StartSite": 37,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcVoltage1SF",
+                            "StartSite": 38,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcVoltage2SF",
+                            "StartSite": 38,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcVoltage3SF",
+                            "StartSite": 38,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower1SF",
+                            "StartSite": 39,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower2SF",
+                            "StartSite": 39,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower3SF",
+                            "StartSite": 39,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcCurrent1",
+                            "StartSite": 40,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcVoltage1",
+                            "StartSite": 41,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower1",
+                            "StartSite": 42,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcCurrent2",
+                            "StartSite": 43,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcVoltage2",
+                            "StartSite": 44,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower2",
+                            "StartSite": 45,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcCurrent3",
+                            "StartSite": 46,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcVoltage3",
+                            "StartSite": 47,
+                            "Length": 1,
+                            "Rate": 1.0
+                        },
+                        {
+                            "Field": "dcActivePower3",
+                            "StartSite": 48,
+                            "Length": 1,
+                            "Rate": 1.0
+                        }
+                    ]
                 },
                 "delta": {
                     "read": [

@@ -15,7 +15,7 @@ class CalculateHandler():
                                     "getAcActiveDailyEnergy":self.__GetAcActiveDailyEnergy, 
                                     "getAcActiveEnergy":self.__GetAcActiveEnergy}
         self.__shelveHandler = ShelveHandler(deviceInfo.deviceID)
-        self.__scaleFalg = True
+        self.__scaleFalg = False
         
     def CalculateData(self, parseResult:dict) -> dict:
         if len(parseResult) != 0:
@@ -103,22 +103,21 @@ class CalculateHandler():
                 sfField[field[:-2]] = value
             else:
                 valueField[field] = value
-        for sfField, sfValue in sfField.items():
-            for vField, vValue in  valueField.items():
-                if sfField in vField:
-                    result[vField] = vValue * (10 ** sfValue)
-                else:
-                    result[vField] = vValue
+        for vField, vValue in  valueField.items():
+            if vField in sfField:
+                result[vField] = vValue * (10 ** sfField[vField])
+            else:
+                result[vField] = vValue
         
     def __GetCalculateCode(self):
         if self.__deviceInfo.connectMode in ('prime', 'cyberpower'):
             return "getAcActivePower"
         elif self.__deviceInfo.connectMode  == 'fronius':
             return "getAcActiveDailyEnergy"
-        elif self.__deviceInfo.connectMode  == 'solaredge':
-            self.__scaleFalg = False
+        elif 'solaredge' in self.__deviceInfo.connectMode:
+            self.__scaleFalg = True
             return "getAcActiveDailyEnergy"
-        elif self.__deviceInfo.connectMode in ('kaco_1', 'kaco_2', 'kaco_3'):
+        elif 'kaco' in self.__deviceInfo.connectMode:
             return "getAcActiveEnergy"
         elif self.__deviceInfo.connectMode == 'spm-3':
             return "getAcCurrentLN"
