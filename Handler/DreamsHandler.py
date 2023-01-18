@@ -119,4 +119,4 @@ class DreamsHandler():
             if message != None:
                 if "deadbandSet" in message:
                     result["deadbandSet"] = message['deadbandSet']
-        return json.dumps(result)
+        return json.dumps(result, default=DataCalssJsonEncoder)

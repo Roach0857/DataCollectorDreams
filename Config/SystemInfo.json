@@ -22,6 +22,46 @@
                 "flag": 1,
                 "deviceID": 1,
                 "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":1
+            },{
+                "type": "inv",
+                "connectMode": "prime",
+                "address": 2,
+                "flag": 2,
+                "deviceID": 2,
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":2
+            },{
+                "type": "inv",
+                "connectMode": "prime",
+                "address": 3,
+                "flag": 3,
+                "deviceID": 3,
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":3
+            },{
+                "type": "inv",
+                "connectMode": "prime",
+                "address": 4,
+                "flag": 4,
+                "deviceID": 4,
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":4
+            },{
+                "type": "inv",
+                "connectMode": "prime",
+                "address": 5,
+                "flag": 5,
+                "deviceID": 5,
+                "comPort": "/dev/ttyUSB0",
+                "dreamsFlag":5
+            },{
+                "type": "dm",
+                "connectMode": "spm-3",
+                "address": 98,
+                "flag": 1,
+                "deviceID": 98,
+                "comPort": "/dev/ttyUSB0",
                 "dreamsFlag":0
             }
         ]

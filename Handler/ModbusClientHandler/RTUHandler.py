@@ -1,4 +1,5 @@
 from logging import Logger
+import time
 import serial
 from pymodbus.client.sync import ModbusSerialClient as pyRtu
 from Entity.ObjectInfo import DeviceInfo
@@ -28,6 +29,8 @@ class RTUHandler(IModbusClient):
             else:
                 for i in range(value):
                     result.append(None)
+        else:
+            time.sleep(1)
         self.__client.close()
         return result        
 

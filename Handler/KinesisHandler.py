@@ -37,7 +37,7 @@ class KinesisHandler:
                 self.__logger.error(f"Describe stream faild {ex}.") 
             time.sleep(1)
 
-    def PutRecord(self, data, partition_key):
+    def PutRecord(self, data):
         """
         Puts data into the stream. The data is formatted as JSON before it is passed
         to the stream.
@@ -50,7 +50,7 @@ class KinesisHandler:
             response = self.__kinesis_client.put_record(
                 StreamName=self.__name,
                 Data=json.dumps(data),
-                PartitionKey=partition_key)
+                PartitionKey=self.kinesisDetails['Shards'][0]['ShardId'])
             self.__logger.info("Put record in stream %s.", self.__name)
         except ClientError:
             self.__logger.exception("Couldn't put record in stream %s.", self.__name)
@@ -58,14 +58,14 @@ class KinesisHandler:
         else:
             return response
 
-    def PutRecords(self, data, partition_key):
+    def PutRecords(self, data):
         try:
             response = self.__kinesis_client.put_records(
                 StreamName=self.__name,
                 Records=[
                     {
                         'Data': json.dumps(d),
-                        'PartitionKey': partition_key
+                        'PartitionKey': self.kinesisDetails['Shards'][0]['ShardId']
                     }
                     for d in data] 
                 )

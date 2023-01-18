@@ -60,7 +60,7 @@ class CalculateHandler():
             if (datetime.datetime.now().date() > localDataTime):
                 result['acActiveEnergyDaily'] = 0.0
             else:
-                result['acActiveEnergyDaily'] = shelveData['dailyEnergy'] + ( result['acActiveEnergy'] - shelveData['acActiveEnergy'])
+                result['acActiveEnergyDaily'] = shelveData['dailyEnergy'] + ( result['acActiveEnergy'] - shelveData['totalEnergy'])
         else:
             self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData is null")
             result['acActiveEnergyDaily'] = 0.0
@@ -77,9 +77,9 @@ class CalculateHandler():
             result[field] = value
         shelveData = self.__shelveHandler.Read()
         if shelveData != None:
-            self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['acActiveEnergyDaily']}")
+            self.__logger.debug(f"{self.__deviceInfo.deviceID}_shelveData | acActiveEnergy:{shelveData['acActiveEnergy']}, acActiveEnergyDaily:{shelveData['dailyEnergy']}")
             if shelveData['dailyEnergy'] <= parseResult['acActiveEnergyDaily']:
-                energyDeviation = parseResult['acActiveEnergyDaily'] - shelveData['acActiveEnergyDaily']
+                energyDeviation = parseResult['acActiveEnergyDaily'] - shelveData['dailyEnergy']
                 shelveData['totalEnergy'] += energyDeviation
             else:
                 shelveData['totalEnergy'] += parseResult['acActiveEnergyDaily']

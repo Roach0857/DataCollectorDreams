@@ -853,282 +853,283 @@
                     "write": {}
                 },
                 "solaredge_2": {
-                    "Read": [
+                    "read": [
                         {
-                            "StartBit": 40072,
-                            "Length": 37
+                            "startBit": 40072,
+                            "length": 37
                         },
                         {
-                            "StartBit": 40123,
-                            "Length": 3
+                            "startBit": 40123,
+                            "length": 3
                         },
                         {
-                            "StartBit": 40140,
-                            "Length": 3
+                            "startBit": 40140,
+                            "length": 3
                         },
                         {
-                            "StartBit": 40160,
-                            "Length": 3
+                            "startBit": 40160,
+                            "length": 3
                         },
                         {
-                            "StartBit": 40180,
-                            "Length": 3
+                            "startBit": 40180,
+                            "length": 3
                         }
                     ],
-                    "Parse": [
+                    "parse": [
                         {
-                            "Field": "acCurrentL1",
-                            "StartSite": 0,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acCurrentL1",
+                            "startSite": 0,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acCurrentL2",
-                            "StartSite": 1,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acCurrentL2",
+                            "startSite": 1,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acCurrentL3",
-                            "StartSite": 2,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acCurrentL3",
+                            "startSite": 2,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acCurrentL1SF",
-                            "StartSite": 3,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acCurrentL1SF",
+                            "startSite": 3,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acCurrentL2SF",
-                            "StartSite": 3,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acCurrentL2SF",
+                            "startSite": 3,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acCurrentL3SF",
-                            "StartSite": 3,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acCurrentL3SF",
+                            "startSite": 3,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acVoltageL1",
-                            "StartSite": 7,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acVoltageL1",
+                            "startSite": 7,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acVoltageL2",
-                            "StartSite": 8,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acVoltageL2",
+                            "startSite": 8,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acVoltageL3",
-                            "StartSite": 9,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acVoltageL3",
+                            "startSite": 9,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acVoltageL1SF",
-                            "StartSite": 10,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acVoltageL1SF",
+                            "startSite": 10,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acVoltageL2SF",
-                            "StartSite": 10,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acVoltageL2SF",
+                            "startSite": 10,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acVoltageL3SF",
-                            "StartSite": 10,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acVoltageL3SF",
+                            "startSite": 10,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acActivePower",
-                            "StartSite": 11,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acActivePower",
+                            "startSite": 11,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acActivePowerSF",
-                            "StartSite": 12,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acActivePowerSF",
+                            "startSite": 12,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "frequency",
-                            "StartSite": 13,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "frequency",
+                            "startSite": 13,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "frequencySF",
-                            "StartSite": 14,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "frequencySF",
+                            "startSite": 14,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "powerFactor",
-                            "StartSite": 19,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "powerFactor",
+                            "startSite": 19,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "powerFactorSF",
-                            "StartSite": 20,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "powerFactorSF",
+                            "startSite": 20,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "acActiveEnergy",
-                            "StartSite": 21,
-                            "Length": 2,
-                            "Rate": 1000.0
+                            "field": "acActiveEnergy",
+                            "startSite": 21,
+                            "length": 2,
+                            "rate": 1000.0
                         },
                         {
-                            "Field": "acActiveEnergySF",
-                            "StartSite": 23,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "acActiveEnergySF",
+                            "startSite": 23,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower",
-                            "StartSite": 28,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower",
+                            "startSite": 28,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePowerSF",
-                            "StartSite": 29,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePowerSF",
+                            "startSite": 29,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "status",
-                            "StartSite": 35,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "status",
+                            "startSite": 35,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "err1",
-                            "StartSite": 36,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "err1",
+                            "startSite": 36,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcCurrent1SF",
-                            "StartSite": 37,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcCurrent1SF",
+                            "startSite": 37,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcCurrent2SF",
-                            "StartSite": 37,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcCurrent2SF",
+                            "startSite": 37,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcCurrent3SF",
-                            "StartSite": 37,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcCurrent3SF",
+                            "startSite": 37,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcVoltage1SF",
-                            "StartSite": 38,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcVoltage1SF",
+                            "startSite": 38,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcVoltage2SF",
-                            "StartSite": 38,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcVoltage2SF",
+                            "startSite": 38,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcVoltage3SF",
-                            "StartSite": 38,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcVoltage3SF",
+                            "startSite": 38,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower1SF",
-                            "StartSite": 39,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower1SF",
+                            "startSite": 39,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower2SF",
-                            "StartSite": 39,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower2SF",
+                            "startSite": 39,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower3SF",
-                            "StartSite": 39,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower3SF",
+                            "startSite": 39,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcCurrent1",
-                            "StartSite": 40,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcCurrent1",
+                            "startSite": 40,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcVoltage1",
-                            "StartSite": 41,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcVoltage1",
+                            "startSite": 41,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower1",
-                            "StartSite": 42,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower1",
+                            "startSite": 42,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcCurrent2",
-                            "StartSite": 43,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcCurrent2",
+                            "startSite": 43,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcVoltage2",
-                            "StartSite": 44,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcVoltage2",
+                            "startSite": 44,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower2",
-                            "StartSite": 45,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower2",
+                            "startSite": 45,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcCurrent3",
-                            "StartSite": 46,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcCurrent3",
+                            "startSite": 46,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcVoltage3",
-                            "StartSite": 47,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcVoltage3",
+                            "startSite": 47,
+                            "length": 1,
+                            "rate": 1.0
                         },
                         {
-                            "Field": "dcActivePower3",
-                            "StartSite": 48,
-                            "Length": 1,
-                            "Rate": 1.0
+                            "field": "dcActivePower3",
+                            "startSite": 48,
+                            "length": 1,
+                            "rate": 1.0
                         }
-                    ]
+                    ],
+                    "write": {}
                 },
                 "delta": {
                     "read": [

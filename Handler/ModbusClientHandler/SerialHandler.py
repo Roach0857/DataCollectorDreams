@@ -1,4 +1,5 @@
 from logging import Logger
+import time
 import serial
 from Entity.ObjectInfo import DeviceInfo
 from Interface.IModbusClient import IModbusClient
@@ -25,6 +26,8 @@ class SerialHandler(IModbusClient, KacoHandler):
             if readResult != None:
                 for ri in readResult:
                     result.append(float(ri))
+        else:
+            time.sleep(1)
         self.__client.close()
         return result
     
