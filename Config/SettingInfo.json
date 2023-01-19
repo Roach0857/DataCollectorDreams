@@ -53,157 +53,183 @@
                             "field": "acVoltageL1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1001"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "1002"
                         },
                         {
                             "field": "acActivePowerL1",
                             "startSite": 2,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1003"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 5,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1006"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "1007"
                         },
                         {
                             "field": "acActivePowerL2",
                             "startSite": 7,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1008"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "100B"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "100C"
                         },
                         {
                             "field": "acActivePowerL3",
                             "startSite": 12,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "100D"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1010"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "1011"
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 17,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1012"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1014"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "1015"
                         },
                         {
                             "field": "dcActivePower2",
                             "startSite": 21,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1016"
                         },
                         {
                             "field": "dcVoltage3",
                             "startSite": 23,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1018"
                         },
                         {
                             "field": "dcCurrent3",
                             "startSite": 24,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "1019"
                         },
                         {
                             "field": "dcActivePower3",
                             "startSite": 25,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "101A"
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 27,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "101C"
                         },
                         {
                             "field": "status",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "101D"
                         },
                         {
                             "field": "err1",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "101E"
                         },
                         {
                             "field": "err2",
                             "startSite": 30,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "101F"
                         },
                         {
                             "field": "err3",
                             "startSite": 31,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "1020"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 32,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1021"
                         },
                         {
                             "field": "operatingHours",
                             "startSite": 34,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1023"
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 38,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "1027"
                         }
                     ],
                     "write": {
@@ -257,157 +283,183 @@
                             "field": "dcVoltage1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D10"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D11"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 2,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D12"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D13"
                         },
                         {
                             "field": "dcVoltage3",
                             "startSite": 4,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D14"
                         },
                         {
                             "field": "dcCurrent3",
                             "startSite": 5,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D15"
                         },
                         {
                             "field": "dcVoltage4",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D16"
                         },
                         {
                             "field": "dcCurrent4",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D17"
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 8,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7D40"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D45"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D46"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D47"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 16,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "7D48"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 18,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "7D4A"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 20,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "7D4C"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 24,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7D50"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "7D54"
                         },
                         {
                             "field": "frequency",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D55"
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 31,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7D57"
                         },
                         {
                             "field": "resistor",
                             "startSite": 32,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7D58"
                         },
                         {
                             "field": "status",
                             "startSite": 33,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7D59"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 34,
                             "length": 2,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D6A"
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 36,
                             "length": 2,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7D72"
                         },
                         {
                             "field": "err1",
                             "startSite": 38,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "7D08"
                         },
                         {
                             "field": "err2",
                             "startSite": 39,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "7D09"
                         },
                         {
                             "field": "err3",
                             "startSite": 40,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "7D0A"
                         }
                     ],
                     "write": {}
@@ -448,217 +500,253 @@
                             "field": "dcVoltage1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E06"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E07"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 2,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E08"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E09"
                         },
                         {
                             "field": "dcVoltage3",
                             "startSite": 4,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E0A"
                         },
                         {
                             "field": "dcCurrent3",
                             "startSite": 5,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E0B"
                         },
                         {
                             "field": "dcVoltage4",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E0C"
                         },
                         {
                             "field": "dcCurrent4",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E0D"
                         },
                         {
                             "field": "dcVoltage5",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E0E"
                         },
                         {
                             "field": "dcCurrent5",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E0F"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E15"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E16"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E17"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E18"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E19"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E1A"
                         },
                         {
                             "field": "frequency",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7E1B"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 17,
                             "length": 1,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "7E1C"
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "7E1E"
                         },
                         {
                             "field": "status",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7E1F"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 23,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7E22"
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 27,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7E26"
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 29,
                             "length": 2,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7E2C"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 31,
                             "length": 2,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "7E32"
                         },
                         {
                             "field": "resistor",
                             "startSite": 33,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "7E43"
                         },
                         {
                             "field": "err1",
                             "startSite": 34,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C350"
                         },
                         {
                             "field": "err2",
                             "startSite": 35,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C351"
                         },
                         {
                             "field": "err3",
                             "startSite": 36,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C352"
                         },
                         {
                             "field": "err4",
                             "startSite": 37,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C353"
                         },
                         {
                             "field": "err5",
                             "startSite": 38,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C354"
                         },
                         {
                             "field": "err6",
                             "startSite": 39,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C355"
                         },
                         {
                             "field": "err7",
                             "startSite": 40,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C356"
                         },
                         {
                             "field": "err8",
                             "startSite": 41,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C357"
                         },
                         {
                             "field": "err9",
                             "startSite": 42,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C358"
                         },
                         {
                             "field": "err10",
                             "startSite": 43,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C359"
                         },
                         {
                             "field": "err11",
                             "startSite": 44,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "C360"
                         }
                     ],
                     "write": {}
@@ -675,181 +763,211 @@
                             "field": "acCurrentL1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C88"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C89"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 2,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8A"
                         },
                         {
                             "field": "acCurrentL1SF",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acCurrentL2SF",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acCurrentL3SF",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8F"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C90"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C91"
                         },
                         {
                             "field": "acVoltageL1SF",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "acVoltageL2SF",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "acVoltageL3SF",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C93"
                         },
                         {
                             "field": "acActivePowerSF",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C94"
                         },
                         {
                             "field": "frequency",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C95"
                         },
                         {
                             "field": "frequencySF",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C96"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9B"
                         },
                         {
                             "field": "powerFactorSF",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9C"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 21,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "9C9D"
                         },
                         {
                             "field": "acActiveEnergySF",
                             "startSite": 23,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9F"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 24,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA0"
                         },
                         {
                             "field": "dcCurrent1SF",
                             "startSite": 25,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA1"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 26,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA2"
                         },
                         {
                             "field": "dcVoltage1SF",
                             "startSite": 27,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA3"
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA4"
                         },
                         {
                             "field": "dcActivePower1SF",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA5"
                         },
                         {
                             "field": "status",
                             "startSite": 35,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CAB"
                         },
                         {
                             "field": "err1",
                             "startSite": 36,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "9CAC"
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA4"
                         },
                         {
                             "field": "dcActivePowerSF",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA5"
                         }
                     ],
                     "write": {}
@@ -882,253 +1000,295 @@
                             "field": "acCurrentL1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C88"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C89"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 2,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8A"
                         },
                         {
                             "field": "acCurrentL1SF",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acCurrentL2SF",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acCurrentL3SF",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8F"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C90"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C91"
                         },
                         {
                             "field": "acVoltageL1SF",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "acVoltageL2SF",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "acVoltageL3SF",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C93"
                         },
                         {
                             "field": "acActivePowerSF",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C94"
                         },
                         {
                             "field": "frequency",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C95"
                         },
                         {
                             "field": "frequencySF",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C96"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9B"
                         },
                         {
                             "field": "powerFactorSF",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9C"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 21,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "9C9D"
                         },
                         {
                             "field": "acActiveEnergySF",
                             "startSite": 23,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9F"
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA4"
                         },
                         {
                             "field": "dcActivePowerSF",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CA5"
                         },
                         {
                             "field": "status",
                             "startSite": 35,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CAB"
                         },
                         {
                             "field": "err1",
                             "startSite": 36,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CAC"
                         },
                         {
                             "field": "dcCurrent1SF",
                             "startSite": 37,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBB"
                         },
                         {
                             "field": "dcCurrent2SF",
                             "startSite": 37,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBB"
                         },
                         {
                             "field": "dcCurrent3SF",
                             "startSite": 37,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBB"
                         },
                         {
                             "field": "dcVoltage1SF",
                             "startSite": 38,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBC"
                         },
                         {
                             "field": "dcVoltage2SF",
                             "startSite": 38,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBC"
                         },
                         {
                             "field": "dcVoltage3SF",
                             "startSite": 38,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBC"
                         },
                         {
                             "field": "dcActivePower1SF",
                             "startSite": 39,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBD"
                         },
                         {
                             "field": "dcActivePower2SF",
                             "startSite": 39,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBD"
                         },
                         {
                             "field": "dcActivePower3SF",
                             "startSite": 39,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CBD"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 40,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CCC"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 41,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CCD"
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 42,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CCE"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 43,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CE0"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 44,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CE1"
                         },
                         {
                             "field": "dcActivePower2",
                             "startSite": 45,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CE2"
                         },
                         {
                             "field": "dcCurrent3",
                             "startSite": 46,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CF4"
                         },
                         {
                             "field": "dcVoltage3",
                             "startSite": 47,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CF5"
                         },
                         {
                             "field": "dcActivePower3",
                             "startSite": 48,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9CF6"
                         }
                     ],
                     "write": {}
@@ -1161,199 +1321,232 @@
                             "field": "status",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "0417"
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 1,
                             "length": 2,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "042F"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 5,
                             "length": 2,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "0433"
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "0437"
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "AFFF"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "B000"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "B001"
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "B002"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "B003"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "B004"
                         },
                         {
                             "field": "dcActivePower2",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "B005"
                         },
                         {
                             "field": "dcVoltage3",
                             "startSite": 17,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "B006"
                         },
                         {
                             "field": "dcCurrent3",
                             "startSite": 18,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "B007"
                         },
                         {
                             "field": "dcActivePower3",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "B008"
                         },
                         {
                             "field": "dcVoltage4",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "B009"
                         },
                         {
                             "field": "dcCurrent4",
                             "startSite": 21,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "B00A"
                         },
                         {
                             "field": "dcActivePower4",
                             "startSite": 22,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "B00B"
                         },
                         {
                             "field": "dcVoltage5",
                             "startSite": 23,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "B00C"
                         },
                         {
                             "field": "dcCurrent5",
                             "startSite": 24,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "B00D"
                         },
                         {
                             "field": "dcActivePower5",
                             "startSite": 25,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "B00E"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 26,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "BFFF"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 27,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "C000"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "C001"
                         },
                         {
                             "field": "acActivePowerL1",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "C002"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 31,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "C004"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 32,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "C005"
                         },
                         {
                             "field": "acAtivePowerL2",
                             "startSite": 33,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "C006"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 35,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "C008"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 36,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "C009"
                         },
                         {
                             "field": "acAtivePowerL3",
                             "startSite": 37,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "C00A"
                         },
                         {
                             "field": "err1",
                             "startSite": 38,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "0BFF"
                         },
                         {
                             "field": "err2",
                             "startSite": 39,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "0C00"
                         },
                         {
                             "field": "err3",
                             "startSite": 40,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "0C01"
                         }
                     ],
                     "write": {
@@ -1382,85 +1575,99 @@
                             "field": "status",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 4,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 5,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         }
                     ],
                     "write": {}
@@ -1472,103 +1679,120 @@
                             "field": "status",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 4,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 5,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower2",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 17,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 18,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": ""
                         }
                     ],
                     "write": {}
@@ -1580,61 +1804,71 @@
                             "field": "status",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 2,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 3,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 4,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 5,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acAtivePowerL1",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": ""
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 4,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": ""
                         }
                     ],
                     "write": {}
@@ -1655,115 +1889,134 @@
                             "field": "acCurrentL1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C89"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8A"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 2,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8B"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C8F"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C90"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C91"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C92"
                         },
                         {
                             "field": "frequency",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C93"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C96"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "9C97"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C98"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C99"
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 17,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9A"
                         },
                         {
                             "field": "status",
                             "startSite": 22,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9F"
                         },
                         {
                             "field": "dcActivePower",
                             "startSite": 17,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "9C9A"
                         },
                         {
                             "field": "err1",
                             "startSite": 23,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "9CB7"
                         },
                         {
                             "field": "err2",
                             "startSite": 24,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "9CB8"
                         },
                         {
                             "field": "err3",
                             "startSite": 25,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "9CB9"
                         },
                         {
                             "field": "err4",
                             "startSite": 26,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "9CBA"
                         }
                     ],
                     "write": {}
@@ -1792,133 +2045,155 @@
                             "field": "status",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1031"
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 7,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "1038"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 11,
                             "length": 2,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "103C"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "10A0"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "10A1"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "10A2"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 16,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "10A3"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 17,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "10A4"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 18,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "10A5"
                         },
                         {
                             "field": "acAtivePowerL1",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "10A6"
                         },
                         {
                             "field": "acActivePowerL2",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "10A7"
                         },
                         {
                             "field": "acActivePowerL3",
                             "startSite": 21,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "10A8"
                         },
                         {
                             "field": "frequency",
                             "startSite": 25,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "10AC"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 26,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "10B0"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 27,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "10B1"
                         },
                         {
                             "field": "dcActivePower1",
                             "startSite": 28,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "10B2"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 29,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "10B3"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 30,
                             "length": 1,
-                            "rate": 100.0
+                            "rate": 100.0,
+                            "address": "10B4"
                         },
                         {
                             "field": "dcActivePower2",
                             "startSite": 31,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "10B5"
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 32,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "10B6"
                         },
                         {
                             "field": "err1",
                             "startSite": 33,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "10C2"
                         },
                         {
                             "field": "err2",
                             "startSite": 34,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "10C3"
                         }
                     ],
                     "write": {}
@@ -1935,109 +2210,127 @@
                             "field": "err1",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "0220"
                         },
                         {
                             "field": "err2",
                             "startSite": 1,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "0221"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 2,
                             "length": 2,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0222"
                         },
                         {
                             "field": "operatingHours",
                             "startSite": 4,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "0224"
                         },
                         {
                             "field": "dcVoltage1",
                             "startSite": 6,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0226"
                         },
                         {
                             "field": "dcVoltage2",
                             "startSite": 7,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0227"
                         },
                         {
                             "field": "dcCurrent1",
                             "startSite": 8,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0228"
                         },
                         {
                             "field": "dcCurrent2",
                             "startSite": 9,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0229"
                         },
                         {
                             "field": "acVoltageL1",
                             "startSite": 10,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "022A"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 11,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "022B"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 12,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "022C"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 13,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "022D"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 14,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "022E"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 15,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "022F"
                         },
                         {
                             "field": "acActivePower",
                             "startSite": 19,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "0233"
                         },
                         {
                             "field": "status",
                             "startSite": 20,
                             "length": 1,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "0234"
                         },
                         {
                             "field": "internalTemperature",
                             "startSite": 21,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0235"
                         },
                         {
                             "field": "acActiveEnergyDaily",
                             "startSite": 22,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0236"
                         }
                     ],
                     "write": {
@@ -2069,97 +2362,113 @@
                             "field": "acVoltageL1",
                             "startSite": 0,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1000"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 2,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1002"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 4,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1004"
                         },
                         {
                             "field": "acLineVoltageL1L2",
                             "startSite": 8,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1008"
                         },
                         {
                             "field": "acLineVoltageL2L3",
                             "startSite": 10,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "100A"
                         },
                         {
                             "field": "acLineVoltageL3L1",
                             "startSite": 12,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "100C"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 16,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1010"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 18,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1012"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 20,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1014"
                         },
                         {
                             "field": "frequency",
                             "startSite": 24,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1018"
                         },
                         {
                             "field": "acActivePowerL1",
                             "startSite": 26,
                             "length": 2,
-                            "rate": 0.001
+                            "rate": 0.001,
+                            "address": "101A"
                         },
                         {
                             "field": "acActivePowerL2",
                             "startSite": 28,
                             "length": 2,
-                            "rate": 0.001
+                            "rate": 0.001,
+                            "address": "101C"
                         },
                         {
                             "field": "acActivePowerL3",
                             "startSite": 30,
                             "length": 2,
-                            "rate": 0.001
+                            "rate": 0.001,
+                            "address": "101E"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 50,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1032"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 52,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1034"
                         },
                         {
                             "field": "reactiveEnergy",
                             "startSite": 54,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1036"
                         }
                     ],
                     "write": {}
@@ -2184,145 +2493,169 @@
                             "field": "acVoltageL1",
                             "startSite": 0,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "100A"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 2,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "100C"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 4,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "100E"
                         },
                         {
                             "field": "acLineVoltageL1L2",
                             "startSite": 8,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1012"
                         },
                         {
                             "field": "acLineVoltageL2L3",
                             "startSite": 10,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1014"
                         },
                         {
                             "field": "acLineVoltageL3L1",
                             "startSite": 12,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1016"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 16,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "101A"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 18,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "101C"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 20,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "101E"
                         },
                         {
                             "field": "acCurrentLN",
                             "startSite": 24,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1022"
                         },
                         {
                             "field": "frequency",
                             "startSite": 26,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1024"
                         },
                         {
                             "field": "acActivePowerL1",
                             "startSite": 28,
                             "length": 2,
-                            "rate": 0.001
+                            "rate": 0.001,
+                            "address": "1026"
                         },
                         {
                             "field": "acActivePowerL2",
                             "startSite": 30,
                             "length": 2,
-                            "rate": 0.001
+                            "rate": 0.001,
+                            "address": "1028"
                         },
                         {
                             "field": "acActivePowerL3",
                             "startSite": 32,
                             "length": 2,
-                            "rate": 0.001
+                            "rate": 0.001,
+                            "address": "102A"
                         },
                         {
                             "field": "powerFactor1",
                             "startSite": 34,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "103E"
                         },
                         {
                             "field": "powerFactor2",
                             "startSite": 36,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1040"
                         },
                         {
                             "field": "powerFactor3",
                             "startSite": 38,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1042"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 40,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1044"
                         },
                         {
                             "field": "acActiveConsumptionEnergy",
                             "startSite": 42,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1058"
                         },
                         {
                             "field": "acActiveProductionEnergy",
                             "startSite": 44,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "105A"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 46,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "105C"
                         },
                         {
                             "field": "reactiveConsumptionEnergy",
                             "startSite": 50,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1060"
                         },
                         {
                             "field": "reactiveProductionEnergy",
                             "startSite": 52,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1062"
                         },
                         {
                             "field": "reactiveEnergy",
                             "startSite": 54,
                             "length": 2,
-                            "rate": 1.0
+                            "rate": 1.0,
+                            "address": "1064"
                         }
                     ],
                     "write": {}
@@ -2351,91 +2684,106 @@
                             "field": "acVoltageL1",
                             "startSite": 0,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0000"
                         },
                         {
                             "field": "acCurrentL1",
                             "startSite": 4,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0004"
                         },
                         {
                             "field": "acActivePowerL1",
                             "startSite": 12,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "000C"
                         },
                         {
                             "field": "acVoltageL2",
                             "startSite": 16,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0024"
                         },
                         {
                             "field": "acCurrentL2",
                             "startSite": 20,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0028"
                         },
                         {
                             "field": "acAtivePowerL2",
                             "startSite": 28,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0030"
                         },
                         {
                             "field": "acVoltageL3",
                             "startSite": 32,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0048"
                         },
                         {
                             "field": "acCurrentL3",
                             "startSite": 36,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "004C"
                         },
                         {
                             "field": "acActivePowerL3",
                             "startSite": 44,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0054"
                         },
                         {
                             "field": "powerFactor",
                             "startSite": 48,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0080"
                         },
                         {
                             "field": "acActiveEnergy",
                             "startSite": 52,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0084"
                         },
                         {
                             "field": "acReactiveEnergy",
                             "startSite": 56,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0088"
                         },
                         {
                             "field": "acLineVoltageL1L2",
                             "startSite": 60,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "008C"
                         },
                         {
                             "field": "acLineVoltageL2L3",
                             "startSite": 64,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0090"
                         },
                         {
                             "field": "acLineVoltageL3L1",
                             "startSite": 68,
                             "length": 4,
-                            "rate": 1000.0
+                            "rate": 1000.0,
+                            "address": "0094"
                         }
                     ],
                     "write": {}
@@ -2454,7 +2802,8 @@
                             "field": "irradiance",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 1
+                            "rate": 1,
+                            "address": "0100"
                         }
                     ],
                     "write": {}
@@ -2471,7 +2820,8 @@
                             "field": "irradiance",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10
+                            "rate": 10,
+                            "address": "0028"
                         }
                     ],
                     "write": {}
@@ -2490,7 +2840,8 @@
                             "field": "temperature",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0100"
                         }
                     ],
                     "write": {}
@@ -2507,7 +2858,8 @@
                             "field": "temperature",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "0001"
                         }
                     ],
                     "write": {}
@@ -2524,7 +2876,8 @@
                             "field": "temperature",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10.0
+                            "rate": 10.0,
+                            "address": "1000"
                         }
                     ],
                     "write": {}
@@ -2543,7 +2896,8 @@
                             "field": "windSpeed",
                             "startSite": 0,
                             "length": 1,
-                            "rate": 10
+                            "rate": 10,
+                            "address": "0006"
                         }
                     ],
                     "write": {}
