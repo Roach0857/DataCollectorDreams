@@ -7,6 +7,7 @@ class Parse:
     startSite: int
     length: int
     rate: float
+    address: str
 
 @dataclass
 class Read:
