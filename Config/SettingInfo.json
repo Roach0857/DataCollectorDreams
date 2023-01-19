@@ -46,10 +46,6 @@
                         {
                             "startBit": 4097,
                             "length": 40
-                        },
-                        {
-                            "startBit": 4126,
-                            "length": 2
                         }
                     ],
                     "parse": [
@@ -174,6 +170,24 @@
                             "rate": 1.0
                         },
                         {
+                            "field": "err1",
+                            "startSite": 29,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err2",
+                            "startSite": 30,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
+                            "field": "err3",
+                            "startSite": 31,
+                            "length": 1,
+                            "rate": 1
+                        },
+                        {
                             "field": "acActiveEnergy",
                             "startSite": 32,
                             "length": 2,
@@ -190,18 +204,6 @@
                             "startSite": 38,
                             "length": 2,
                             "rate": 1000.0
-                        },
-                        {
-                            "field": "err1",
-                            "startSite": 40,
-                            "length": 1,
-                            "rate": 1
-                        },
-                        {
-                            "field": "err2",
-                            "startSite": 41,
-                            "length": 1,
-                            "rate": 1
                         }
                     ],
                     "write": {
