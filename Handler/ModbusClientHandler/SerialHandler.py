@@ -18,7 +18,6 @@ class SerialHandler(IModbusClient, KacoHandler):
     def RequestModbus(self, readCode:str, startBit:int, value:int) -> list:
         result = []
         if self.__client.isOpen():
-            self.__logger.info(f"Connect Serial {self.__client.isOpen()}")
             try:
                 readResult = self.__serialFunction[readCode](self.__checkCode, self.__deviceInfo.address)
             except Exception as ex:

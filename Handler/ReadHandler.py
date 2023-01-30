@@ -29,7 +29,7 @@ class ReadHandler(DataHandler):
                  ipcClient:GreengrassCoreIPCClient,
                  sendQueue:Queue,
                  logger: Logger):
-        super().__init__(awsInfo, nodeInfo, operateInfo, ipcClient, sendQueue, logger)
+        super().__init__(awsInfo, deviceInfoList, nodeInfo, operateInfo, ipcClient, sendQueue, logger)
         self.__locationObjectID = locationObjectID
         self.__deviceInfoList = deviceInfoList
         self.__deviceConfig = deviceConfig
@@ -50,7 +50,7 @@ class ReadHandler(DataHandler):
                     for deviceInfo in self.__deviceInfoList:
                         deviceResult, errResult = self.__ReadModbusByConfig(deviceInfo)
                         result.data.append(deviceResult)
-                        result.err.append(errResult)
+                        result.err.extend(errResult)
                         if self.__deadband.Check(deviceResult):
                             aiData = self.__mqtt.GetAIData("2", currentData=self.__deadband.currentData)
                             self.__mqtt.Publish(aiData)

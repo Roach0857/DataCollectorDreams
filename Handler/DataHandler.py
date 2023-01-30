@@ -7,13 +7,14 @@ from awsiot.greengrasscoreipc import GreengrassCoreIPCClient
 
 from Entity.AwsInfo import AwsInfo
 from Entity.NodeInfo import NodeInfo
+from Entity.ObjectInfo import DeviceInfo
 from Entity.OperateInfo import OperateInfo
 from Entity.ParseData import ParseData
 from Handler.AwsShadowHandler import AwsShadowHandler
 
 class DataHandler(AwsShadowHandler):
-    def __init__(self, awsInfo: AwsInfo, nodeInfo: NodeInfo,  operateInfo:OperateInfo, ipcClient:GreengrassCoreIPCClient, sendQueue:Queue, logger: Logger):
-        super().__init__(awsInfo, nodeInfo, ipcClient, logger)
+    def __init__(self, awsInfo: AwsInfo, deviceInfoList:list[DeviceInfo], nodeInfo: NodeInfo,  operateInfo:OperateInfo, ipcClient:GreengrassCoreIPCClient, sendQueue:Queue, logger: Logger):
+        super().__init__(awsInfo, deviceInfoList, nodeInfo, ipcClient, logger)
         self.__dataFolderPath = operateInfo.dataFolderPath.lostData
         self.__modelInfo = operateInfo.modelInfo[nodeInfo.operateModel]
         self.__logger = logger

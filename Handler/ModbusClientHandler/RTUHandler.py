@@ -18,7 +18,6 @@ class RTUHandler(IModbusClient):
     def RequestModbus(self, readCode:str, startBit:int, value:int) -> list:
         result = []
         if self.__client.connect():
-            self.__logger.info(f"Connect Serial {self.__client.connect()}")
             try:
                 readResult = self.__modbusFunction[readCode](startBit, value, unit=self.__deviceInfo.address)
             except Exception as ex:

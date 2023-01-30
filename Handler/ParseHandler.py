@@ -17,11 +17,11 @@ class ParseHandler(CalculateHandler):
         self.__parseFunstion = {"basic":self.__BasicParse, "sunspec":self.__SunspecParse, "temp":self.__TempParse, "irr":self.__IrrParse, "dm":self.__DmParse, "DM2436AB":self.__DM2436ABParse}
         self.__dWordFlag = True
     
-    def Process(self, modbusResult:list, readTimestamp:int) -> tuple[dict, dict]:
+    def Process(self, modbusResult:list, readTimestamp:int) -> tuple[dict, list[dict]]:
         deviceResult, errResult = self.__ParseModbus(modbusResult)
         deviceResult = self.CalculateData(deviceResult)
         deviceResult = self.__SetData(deviceResult, readTimestamp)
-        errResult = self.__SetData(errResult, readTimestamp)
+        errResult = list(map(lambda x:self.__SetData(x, readTimestamp), errResult))
         return (deviceResult, errResult)
     
     def __SetData(self, data:dict, readTimestamp:int) -> dict:
@@ -34,12 +34,18 @@ class ParseHandler(CalculateHandler):
     
     def __ParseModbus(self, modbusResult:list) -> tuple[dict, dict]:
         data = {}
-        err = {}
+        err = []
         if len(modbusResult) != 0:
             for parseConfig in self.dataConfig.parse:
                 if modbusResult[parseConfig.startSite] != None:
                     if 'err' in parseConfig.field:
-                        err[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
+                        err.append(
+                            {
+                                'errCode': self.__parseFunstion[self.__parseCode](modbusResult, parseConfig),
+                                'errID': parseConfig.field[3:],
+                                'address' : parseConfig.address
+                            }
+                        )
                     else:
                         data[parseConfig.field] = self.__parseFunstion[self.__parseCode](modbusResult, parseConfig)
         return data, err
@@ -146,9 +152,9 @@ class ParseHandler(CalculateHandler):
          
     def __ParseDeviceCode(self, value) -> str:
         if type(value) is str:
-            return hex(int(value))[2:].zfill(4)
+            return hex(int(value))[2:].zfill(4).upper()
         else:
-            return hex(value)[2:].zfill(4)
+            return hex(value)[2:].zfill(4).upper()
     
     def __ParseDeviceValue(self, value, rate) -> float:
         if type(value) is str :
