@@ -33,7 +33,7 @@ class DeadbandHandler():
             if len(data) != 0:
                 if data["type"] in ("irr", "wind", "dm"):
                     getValue = list(filter(lambda x:x[0] in self.currentData.__dict__ , data.items()))
-                    updateValue = map(lambda x:self.currentData.__dict__.update({x[0]:x[1]}), getValue)
+                    updateValue = list(map(lambda x:setattr(self.currentData, x[0], x[1]), getValue))
                     checkList = list(map(lambda x:self.__CheckDeadBand(x[0], x[1]), getValue))
                     checkFlag = list(filter(lambda x:x == True, checkList))
                     if len(checkFlag) != 0:
@@ -41,12 +41,12 @@ class DeadbandHandler():
         return False
     
     def __CheckDeadBand(self, dataField:str, dataValue:float):
-        flag = False
-        if self.currentData.__dict__[dataField] != None:
-            checkeValue = (abs(self.currentData.__dict__[dataField] - dataValue) / self.currentData.__dict__[dataField]) * 100
-            if checkeValue > (self.deadbandSet.__dict__[dataField] / 100):
-                self.__logger.debug(f"Deadband trigger -> Field:{dataField}, Value:{dataValue}")
-                flag = True
-        return flag
+        if hasattr(self.deadbandSet, dataField):
+            if self.currentData.__dict__[dataField] != None and self.deadbandSet.__dict__[dataField] != None:
+                checkeValue = (abs(self.currentData.__dict__[dataField] - dataValue) / self.currentData.__dict__[dataField]) * 100
+                if checkeValue > (self.deadbandSet.__dict__[dataField] / 100):
+                    self.__logger.debug(f"Deadband trigger -> Field:{dataField}, Value:{dataValue}")
+                    return True
+        return False
     
     
