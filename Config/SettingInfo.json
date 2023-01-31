@@ -2450,6 +2450,20 @@
                             "address": "101E"
                         },
                         {
+                            "field": "acActivePower",
+                            "startSite": 32,
+                            "length": 2,
+                            "rate": 0.001,
+                            "address": "1020"
+                        },
+                        {
+                            "field": "acReactivePower",
+                            "startSite": 40,
+                            "length": 2,
+                            "rate": 0.001,
+                            "address": "1028"
+                        },
+                        {
                             "field": "powerFactor",
                             "startSite": 50,
                             "length": 2,

@@ -9,6 +9,7 @@ from Handler.DreamsHandler import DreamsHandler
 from Handler.DeadbandHandler import DeadbandHandler
 from apscheduler.schedulers.background import BackgroundScheduler
 import paho.mqtt.client as mqtt
+import threading as th
 
 class MqttHandler(DreamsHandler):
     def __init__(self, 
@@ -30,6 +31,8 @@ class MqttHandler(DreamsHandler):
         self.__client = mqtt.Client(client_id=f"awsiot-{thingName}")
         self.__client.username_pw_set(self.__mqttInfo.user, self.__mqttInfo.password)
         self.__client.on_message = self.__on_message_received
+        self.__mqttJob = th.Thread(target=self.__client.loop_forever)
+        self.__mqttJob.start()
         self.__backgroundScheduler = BackgroundScheduler()
         self.__backgroundScheduler.add_job(self.__SendClass1Data, 'cron', minute='*/15', id='SelectData')
         self.__backgroundScheduler.start()
