@@ -64,8 +64,6 @@ class Operation():
         self.awsMqtt = AwsMqttHandler(sys.argv[1],self.awsInfo, self.nodeInfo, self.logger)
         self.awsMqtt.Connect()
         self.mqtt = MqttHandler(sys.argv[1], self.objectInfo.dreamsType, self.mqttInfo, self.nodeInfo, self.objectInfo.device, self.deviceConfig, self.deadband, logger)
-        self.mqtt.Connect()
-        self.mqtt.Subscribe()
         self.mutual = MutualFactory(self.awsInfo, self.nodeInfo, self.GPIOInfo, self.ipcClient, self.logger)
         self.sendQueue = Queue()
         self.send = SendHandler(self.nodeInfo.operateModel, self.operateInfo, self.sendQueue, self.logger)

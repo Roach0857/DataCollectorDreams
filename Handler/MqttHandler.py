@@ -30,7 +30,8 @@ class MqttHandler(DreamsHandler):
         self.__logger = logger
         self.__client = mqtt.Client(client_id=f"awsiot-{thingName}")
         self.__client.username_pw_set(self.__mqttInfo.user, self.__mqttInfo.password)
-        self.__client.on_message = self.__on_message_received
+        self.__client.on_connect = self.__on_connect
+        self.__client.on_message = self.__on_message
         self.__mqttJob = th.Thread(target=self.__client.loop_forever)
         self.__mqttJob.start()
         self.__backgroundScheduler = BackgroundScheduler()
@@ -46,12 +47,12 @@ class MqttHandler(DreamsHandler):
         result = self.__client.publish(topic=topic, qos=0, payload=payload)
         self.__logger.info(f"Published {topic}, result:{result}, payload:{payload}")
 
-    def Subscribe(self):
+    def __on_connect(self):
         topic = f"rfdme/dreams/{self.__nodeInfo.powerNumber}/#"
         result = self.__client.subscribe(topic=topic, qos=0)
         self.__logger.info(f"Subscribed {topic}, result:{result}")
 
-    def __on_message_received(self, topic: str, payload, dup, qos, retain, **kwargs):
+    def __on_message(self, topic: str, payload, dup, qos, retain, **kwargs):
         self.__logger.info(f"Received message from topic '{topic}': {payload}")
         message = json.loads(payload)
         if self.__dreamsType == "slave":
