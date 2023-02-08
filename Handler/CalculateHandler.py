@@ -1,6 +1,6 @@
 import datetime
 from logging import Logger
-
+from decimal import Decimal
 from Entity.ObjectInfo import DeviceInfo
 from Handler.ShelveHandler import ShelveHandler
 
@@ -36,13 +36,13 @@ class CalculateHandler():
         
     def __GetAcActivePower(self, parseResult:dict) -> dict:
         result = {}
-        totalPower = 0
+        totalPower = Decimal(0)
         for field, value in parseResult.items():
             result[field] = value
             if field[:13] == "dcActivePower":
-                totalPower += value
-        if totalPower != 0:
-            result["dcActivePower"] = totalPower
+                totalPower += Decimal(str(value))
+        if not totalPower.is_zero():
+            result["dcActivePower"] = float(totalPower)
         return result
     
     def __GetAcActiveDailyEnergy(self, parseResult:dict) -> dict:
